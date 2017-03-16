@@ -1,2 +1,2 @@
 # paattipeli
-Laivanupotus
+Laivanupotus-peli
