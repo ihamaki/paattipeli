@@ -8,3 +8,9 @@
 - valitse pelityyppi (kaksinpeli/tietokonetta vastaan)
 - sijoita laivat omalle pelilaudalle
 - etsi laivoja vastustajan pelilaudalta (osui/ei osunut)
+
+**Alustava luokkakaavio:**
+
+![Luokkakaavio](https://yuml.me/5d5bf33d)
+
+Pelilaudan kooksi on kaaviossa oletettu alustavasti 10x10 ja laivojen määräksi 10.
