@@ -1,7 +1,7 @@
 package paatti.logiikka;
 
 public class Ruutu {
- 
+
     private int x;
     private int y;
     private boolean sisaltaaLaivan;
@@ -58,7 +58,7 @@ public class Ruutu {
 
     @Override
     public String toString() {
-        return "[ " + this.x + " " + this.y + "]";
+        return "[" + this.x + ", " + this.y + "]";
     }
 
     @Override
@@ -70,10 +70,8 @@ public class Ruutu {
             return false;
         }
         Ruutu verrattava = (Ruutu) o;
-        
+
         return this.getX() == verrattava.getX() && this.getY() == verrattava.getY();
     }
-    
-    
 
 }

@@ -15,13 +15,15 @@ public class Peli {
     }
 
     public void pelaa() {
-        System.out.println("Tervetuloa peliin");
+        System.out.println("Tervetuloa peliin!");
         paivitaPeli();
+        System.out.println("\nSyötetään laivojen koordinaatit. Laivoja on 3, ja niiden kaikkien koko on 1. Koordinaatit ovat välillä 1-5.\n");
         System.out.println("Pelaaja 1, syötä laivat: ");
         lisaaLaivat(lauta1);
         System.out.println("Pelaaja 2, syötä laivat: ");
         lisaaLaivat(lauta2);
-        paivitaPeli();
+        lauta1.tulostaLautaJaLaivat();
+        lauta2.tulostaLautaJaLaivat();
     }
     
     public void paivitaPeli() {
@@ -37,10 +39,10 @@ public class Peli {
         for (int i = 1; i <= 3; i++) {
             System.out.println("Laiva " + i);
             System.out.print("X: ");
-            int x = Integer.parseInt(lukija.nextLine());
+            int x = Integer.parseInt(lukija.nextLine()) - 1;
             System.out.print("Y: ");
-            int y = Integer.parseInt(lukija.nextLine());
-            lauta.alustaLaivat(x, y);
+            int y = Integer.parseInt(lukija.nextLine()) - 1;
+            lauta.alustaLaiva(x, y);
         }
     }
 

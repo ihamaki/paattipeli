@@ -27,4 +27,11 @@ public class RuutuTest {
          assertFalse(ruutu.isTuhoutunut());
          assertFalse(ruutu.isAmmuttu());
      }
+     
+     // ei toimi
+//     @Test
+//     public void toStringToimii() {
+//         Ruutu ruutu = new Ruutu(1, 2);
+//         assertEquals("[1, 2]", ruutu);
+//     }
 }
