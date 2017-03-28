@@ -20,24 +20,23 @@ public class Lauta {
         return koko;
     }
 
-    public void setKoko(int koko) {
-        this.koko = koko;
-    }
-
     public Ruutu[][] getRuudut() {
         return ruudut;
-    }
-
-    public void setRuudut(Ruutu[][] ruudut) {
-        this.ruudut = ruudut;
     }
 
     public List<Laiva> getLaivat() {
         return laivat;
     }
-
-    public void setLaivat(List<Laiva> laivat) {
-        this.laivat = laivat;
+    
+    public boolean kaikkiLaivatTuhottu() {
+        int tuhottu = 0;
+        for (Laiva laiva : laivat) {
+            laiva.tarkistaOnkoTuhoutunut();
+            if (laiva.isTuhoutunut()) {
+                tuhottu++;
+            }
+        }
+        return tuhottu == laivat.size();
     }
 
     public void alustaLauta() {
@@ -90,20 +89,14 @@ public class Lauta {
         }
     }
 
-    public void alustaLaiva(int x, int y) {
-        if (x < 0 || x >= koko || y < 0 || y >= koko) {
-            return;
+    public void alustaLaiva(List<Ruutu> laivanRuudut) {
+        for (Ruutu ruutu : laivanRuudut) {
+            if (ruutu.getX() < 0 || ruutu.getY() < 0 || ruutu.getX() >= koko || ruutu.getY() >= koko)  {
+                return;
+            }
+            ruudut[ruutu.getX()][ruutu.getY()].setSisaltaaLaivan(true);
         }
-        Laiva laiva = new Laiva();
-        Ruutu ruutu = ruudut[x][y];
-        ruutu.setSisaltaaLaivan(true);
-        laiva.lisaaRuutu(ruutu);
+        Laiva laiva = new Laiva(laivanRuudut);
         laivat.add(laiva);
     }
-
-    @Override
-    public String toString() {
-        return "" + this.ruudut;
-    }
-
 }

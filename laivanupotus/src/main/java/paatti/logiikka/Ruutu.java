@@ -20,16 +20,8 @@ public class Ruutu {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public boolean isSisaltaaLaivan() {
@@ -70,8 +62,11 @@ public class Ruutu {
             return false;
         }
         Ruutu verrattava = (Ruutu) o;
-
-        return this.getX() == verrattava.getX() && this.getY() == verrattava.getY();
+        
+        return this.getX() == verrattava.getX() && this.getY() == verrattava.getY()
+                && this.isSisaltaaLaivan() == verrattava.isSisaltaaLaivan()
+                && this.isAmmuttu() == verrattava.isAmmuttu()
+                && this.isTuhoutunut() == verrattava.isTuhoutunut();
     }
 
 }

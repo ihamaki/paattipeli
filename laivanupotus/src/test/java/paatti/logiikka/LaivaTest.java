@@ -1,5 +1,7 @@
 package paatti.logiikka;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,10 @@ public class LaivaTest {
 
     @Before
     public void setUp() {
-        this.laiva = new Laiva();
+        List<Ruutu> ruudut = new ArrayList<>();
+        ruudut.add(new Ruutu(1, 2));
+        ruudut.add(new Ruutu(1, 3));
+        this.laiva = new Laiva(ruudut);
     }
 
     @After
@@ -25,20 +30,12 @@ public class LaivaTest {
     @Test
     public void konstruktoriToimii() {
         assertEquals(false, laiva.isTuhoutunut());
-        assertEquals(true, laiva.getRuudut().isEmpty());
-    }
-    
-    @Test
-    public void ruudunLisaysToimii() {
-        lisaaRuutu(1, 2);
-        Ruutu ruutu = new Ruutu(1, 2);
-        assertEquals(ruutu, laiva.getRuudut().get(0));
+        assertEquals(new Ruutu(1, 2), laiva.getRuudut().get(0));
+        assertEquals(new Ruutu(1, 3), laiva.getRuudut().get(1));
     }
     
     @Test
     public void laivaEhjaKunVainOsaRuuduistaTuhoutunut() {
-        lisaaRuutu(1, 2);
-        lisaaRuutu(2, 3);
         laiva.getRuudut().get(0).setTuhoutunut(true);
         laiva.tarkistaOnkoTuhoutunut();
         assertEquals(false, laiva.isTuhoutunut());
@@ -46,8 +43,6 @@ public class LaivaTest {
     
     @Test
     public void laivaTuhoutunutKunRuudutTuhoutuneet() {
-        lisaaRuutu(1, 2);
-        lisaaRuutu(2, 1);
         for (Ruutu ruutu : laiva.getRuudut()) {
             ruutu.setTuhoutunut(true);
         }
@@ -55,17 +50,9 @@ public class LaivaTest {
         assertEquals(true, laiva.isTuhoutunut());
     }
     
-    // testi ei toimi
-//    @Test
-//    public void toStringToimii() {
-//        lisaaRuutu(1, 2);
-//        assertEquals("[1, 2] tuhoutunut: false", laiva);
-//    }
-    
-    public void lisaaRuutu(int x, int y) {
-        Ruutu ruutu = new Ruutu(x, y);
-        ruutu.setSisaltaaLaivan(true);
-        laiva.lisaaRuutu(ruutu);
+    @Test
+    public void toStringToimii() {
+        assertEquals("[1, 2] [1, 3] tuhoutunut:false", laiva.toString());
     }
     
 }

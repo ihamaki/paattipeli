@@ -4,8 +4,11 @@ import org.junit.After;
 import org.junit.Before;
 
 public class PeliTest {
+    
+    private Peli peli;
 
     public PeliTest() {
+        
     }
 
     @Before

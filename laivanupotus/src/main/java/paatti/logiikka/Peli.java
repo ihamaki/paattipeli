@@ -1,5 +1,6 @@
 package paatti.logiikka;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Peli {
@@ -17,33 +18,49 @@ public class Peli {
     public void pelaa() {
         System.out.println("Tervetuloa peliin!");
         paivitaPeli();
-        System.out.println("\nSyötetään laivojen koordinaatit. Laivoja on 3, ja niiden kaikkien koko on 1. Koordinaatit ovat välillä 1-5.\n");
-        System.out.println("Pelaaja 1, syötä laivat: ");
-        lisaaLaivat(lauta1);
-        System.out.println("Pelaaja 2, syötä laivat: ");
-        lisaaLaivat(lauta2);
+        lisaaLaivat(lauta1, lauta2);
+        
+        // laivojen sijainnit
         lauta1.tulostaLautaJaLaivat();
         lauta2.tulostaLautaJaLaivat();
+        
+        while (!lauta1.kaikkiLaivatTuhottu() && !lauta2.kaikkiLaivatTuhottu()) {
+            // varsinainen peli
+        }
+    }
+    
+    public void ammu(int x, int y, Lauta lauta) {
+        if (lauta.getRuudut()[x][y].isSisaltaaLaivan()) {
+            lauta.getRuudut()[x][y].setAmmuttu(true);
+            lauta.getRuudut()[x][y].setTuhoutunut(true);
+        } else {
+            lauta.getRuudut()[x][y].setAmmuttu(true);
+        }
     }
     
     public void paivitaPeli() {
-        System.out.println("");
-        System.out.println("Pelaaja 1");
+        System.out.println("\nPelaaja 1");
         lauta1.tulostaLauta();
-        System.out.println("");
-        System.out.println("Pelaaja 2");
+        System.out.println("\nPelaaja 2");
         lauta2.tulostaLauta();
     }
     
-    public void lisaaLaivat(Lauta lauta) {
-        for (int i = 1; i <= 3; i++) {
-            System.out.println("Laiva " + i);
-            System.out.print("X: ");
-            int x = Integer.parseInt(lukija.nextLine()) - 1;
-            System.out.print("Y: ");
-            int y = Integer.parseInt(lukija.nextLine()) - 1;
-            lauta.alustaLaiva(x, y);
-        }
+    public void lisaaLaivat(Lauta lauta1, Lauta lauta2) {
+        // alustetaan laivojen ruudut
+        // varsinainen laivojen luonti käyttöliittymän avulla
+        ArrayList<Ruutu> laivanRuudut1 = new ArrayList<>();
+        ArrayList<Ruutu> laivanRuudut2 = new ArrayList<>();
+        
+        laivanRuudut1.add(new Ruutu(1, 2));
+        laivanRuudut1.add(new Ruutu(1, 3));
+        laivanRuudut1.add(new Ruutu(1, 4));
+        
+        laivanRuudut2.add(new Ruutu(2, 2));
+        laivanRuudut2.add(new Ruutu(3, 2));
+        laivanRuudut2.add(new Ruutu(4, 2));
+        
+        lauta1.alustaLaiva(laivanRuudut1);
+        lauta2.alustaLaiva(laivanRuudut2);
     }
 
 }

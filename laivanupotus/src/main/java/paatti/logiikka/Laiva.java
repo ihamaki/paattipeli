@@ -8,8 +8,8 @@ public class Laiva {
     private boolean tuhoutunut;
     private List<Ruutu> ruudut;
 
-    public Laiva() {
-        this.ruudut = new ArrayList<>();
+    public Laiva(List<Ruutu> laivanRuudut) {
+        this.ruudut = laivanRuudut;
         this.tuhoutunut = false;
     }
 
@@ -23,10 +23,6 @@ public class Laiva {
 
     public List<Ruutu> getRuudut() {
         return ruudut;
-    }
-
-    public void lisaaRuutu(Ruutu ruutu) {
-        this.ruudut.add(ruutu);
     }
 
     public void tarkistaOnkoTuhoutunut() {
@@ -47,7 +43,22 @@ public class Laiva {
         for (int i = 0; i < ruudut.size(); i++) {
             osat += ruudut.get(i) + " ";
         }
-        return osat + "tuhoutunut: " + this.isTuhoutunut();
+        return osat + "tuhoutunut:" + this.isTuhoutunut();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        
+        Laiva verrattava = (Laiva) o;
+        
+        return this.tuhoutunut == verrattava.tuhoutunut 
+                && this.getRuudut() == verrattava.getRuudut();
     }
 
 }
