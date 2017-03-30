@@ -1,18 +1,23 @@
 package paatti.logiikka;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Peli {
     
     private Lauta lauta1;
     private Lauta lauta2;
-    private Scanner lukija;
 
-    public Peli(int koko, Scanner lukija) {
+    public Peli(int koko) {
         this.lauta1 = new Lauta(koko);
         this.lauta2 = new Lauta(koko);
-        this.lukija = lukija;
+    }
+
+    public Lauta getLauta1() {
+        return lauta1;
+    }
+
+    public Lauta getLauta2() {
+        return lauta2;
     }
 
     public void pelaa() {
@@ -21,12 +26,18 @@ public class Peli {
         lisaaLaivat(lauta1, lauta2);
         
         // laivojen sijainnit
-        lauta1.tulostaLautaJaLaivat();
-        lauta2.tulostaLautaJaLaivat();
-        
-        while (!lauta1.kaikkiLaivatTuhottu() && !lauta2.kaikkiLaivatTuhottu()) {
-            // varsinainen peli
-        }
+//        lauta1.tulostaLautaJaLaivat();
+//        lauta2.tulostaLautaJaLaivat();
+
+//        ammu(0,0, lauta1);
+//        ammu(1,0, lauta1);
+//        ammu(2,0, lauta1);
+//        
+//        paivitaPeli();
+//        
+//        while (!lauta1.kaikkiLaivatTuhottu() && !lauta2.kaikkiLaivatTuhottu()) {
+//            // varsinainen peli
+//        }
     }
     
     public void ammu(int x, int y, Lauta lauta) {
@@ -36,6 +47,7 @@ public class Peli {
         } else {
             lauta.getRuudut()[x][y].setAmmuttu(true);
         }
+        lauta.ammuLaivanRuudut(x, y);
     }
     
     public void paivitaPeli() {

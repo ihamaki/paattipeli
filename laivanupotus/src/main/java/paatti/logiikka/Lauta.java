@@ -27,7 +27,7 @@ public class Lauta {
     public List<Laiva> getLaivat() {
         return laivat;
     }
-    
+
     public boolean kaikkiLaivatTuhottu() {
         int tuhottu = 0;
         for (Laiva laiva : laivat) {
@@ -91,12 +91,38 @@ public class Lauta {
 
     public void alustaLaiva(List<Ruutu> laivanRuudut) {
         for (Ruutu ruutu : laivanRuudut) {
-            if (ruutu.getX() < 0 || ruutu.getY() < 0 || ruutu.getX() >= koko || ruutu.getY() >= koko)  {
+            if (ruutu.getX() < 0 || ruutu.getY() < 0 || ruutu.getX() >= koko || ruutu.getY() >= koko) {
                 return;
             }
             ruudut[ruutu.getX()][ruutu.getY()].setSisaltaaLaivan(true);
         }
         Laiva laiva = new Laiva(laivanRuudut);
         laivat.add(laiva);
+    }
+    
+    public void ammuLaivanRuudut(int x, int y) {
+        for (int i = 0; i < laivat.size(); i++) {
+            Laiva laiva = laivat.get(i);
+            for (Ruutu ruutu : laiva.getRuudut()) {
+                if (ruutu.getX() == x && ruutu.getY() == y) {
+                    ruutu.setAmmuttu(true);
+                    ruutu.setTuhoutunut(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        
+        Lauta verrattava = (Lauta) o;
+        
+        return this.getKoko() == verrattava.getKoko();
     }
 }

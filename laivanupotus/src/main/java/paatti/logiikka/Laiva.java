@@ -45,7 +45,7 @@ public class Laiva {
         }
         return osat + "tuhoutunut:" + this.isTuhoutunut();
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (o == null) {
@@ -54,11 +54,22 @@ public class Laiva {
         if (this.getClass() != o.getClass()) {
             return false;
         }
-        
+
         Laiva verrattava = (Laiva) o;
-        
-        return this.tuhoutunut == verrattava.tuhoutunut 
-                && this.getRuudut() == verrattava.getRuudut();
+
+        for (Ruutu ruutu : this.ruudut) {
+            if (!verrattava.getRuudut().contains(ruutu)) {
+                return false;
+            }
+        }
+
+        for (Ruutu ruutu : verrattava.getRuudut()) {
+            if (!this.ruudut.contains(ruutu)) {
+                return false;
+            }
+        }
+
+        return this.tuhoutunut == verrattava.tuhoutunut;
     }
 
 }
