@@ -11,6 +11,6 @@
 
 **Alustava luokkakaavio:**
 
-![Luokkakaavio](https://yuml.me/5d5bf33d)
+![Luokkakaavio](https://yuml.me/fbc27799)
 
 Pelilaudan kooksi on kaaviossa oletettu alustavasti 10x10 ja laivojen määräksi 10.
