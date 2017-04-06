@@ -1,19 +1,30 @@
 package paatti.logiikka;
 
+/**
+ * Ruutu kuvaa yhtä pelilaudan ruutua ja pitää sisällään tiedon koordinaateista,
+ * mahdollisesta laivasta, sekä siitä, onko ruutua ammuttu tai onko se
+ * tuhoutunut.
+ */
 public class Ruutu {
 
     private int x;
     private int y;
-    private boolean sisaltaaLaivan;
-    private boolean tuhoutunut;
     private boolean ammuttu;
+    private boolean tuhoutunut;
+    private Laiva laiva;
 
+    /**
+     * Ruudun konstruktori
+     *
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public Ruutu(int x, int y) {
         this.x = x;
         this.y = y;
-        this.sisaltaaLaivan = false;
         this.tuhoutunut = false;
         this.ammuttu = false;
+        this.laiva = null;
     }
 
     public int getX() {
@@ -24,15 +35,7 @@ public class Ruutu {
         return y;
     }
 
-    public boolean isSisaltaaLaivan() {
-        return sisaltaaLaivan;
-    }
-
-    public void setSisaltaaLaivan(boolean sisaltaaLaivan) {
-        this.sisaltaaLaivan = sisaltaaLaivan;
-    }
-
-    public boolean isTuhoutunut() {
+    public boolean getTuhoutunut() {
         return tuhoutunut;
     }
 
@@ -40,12 +43,20 @@ public class Ruutu {
         this.tuhoutunut = tuhoutunut;
     }
 
-    public boolean isAmmuttu() {
+    public boolean getAmmuttu() {
         return ammuttu;
     }
 
     public void setAmmuttu(boolean ammuttu) {
         this.ammuttu = ammuttu;
+    }
+
+    public Laiva getLaiva() {
+        return laiva;
+    }
+
+    public void setLaiva(Laiva laiva) {
+        this.laiva = laiva;
     }
 
     @Override
@@ -62,11 +73,10 @@ public class Ruutu {
             return false;
         }
         Ruutu verrattava = (Ruutu) o;
-        
-        return this.getX() == verrattava.getX() && this.getY() == verrattava.getY()
-                && this.isSisaltaaLaivan() == verrattava.isSisaltaaLaivan()
-                && this.isAmmuttu() == verrattava.isAmmuttu()
-                && this.isTuhoutunut() == verrattava.isTuhoutunut();
-    }
 
+        return this.getX() == verrattava.getX() && this.getY() == verrattava.getY()
+                && this.getAmmuttu() == verrattava.getAmmuttu()
+                && this.getTuhoutunut() == verrattava.getTuhoutunut()
+                && this.getLaiva() == verrattava.getLaiva();
+    }
 }

@@ -9,9 +9,6 @@ public class RuutuTest {
 
     private Ruutu ruutu;
 
-    public RuutuTest() {
-    }
-
     @Before
     public void setUp() {
         this.ruutu = new Ruutu(1, 2);
@@ -25,9 +22,9 @@ public class RuutuTest {
     public void konstruktoriToimii() {
         assertEquals(1, ruutu.getX());
         assertEquals(2, ruutu.getY());
-        assertFalse(ruutu.isSisaltaaLaivan());
-        assertFalse(ruutu.isTuhoutunut());
-        assertFalse(ruutu.isAmmuttu());
+        assertFalse(ruutu.getAmmuttu());
+        assertFalse(ruutu.getTuhoutunut());
+        assertNull(ruutu.getLaiva());
     }
 
     @Test
@@ -38,15 +35,24 @@ public class RuutuTest {
     @Test
     public void equalsToimiiKunSamaRuutu() {
         Ruutu toinen = new Ruutu(1, 2);
-        toinen.setSisaltaaLaivan(true);
-        ruutu.setSisaltaaLaivan(true);
+        Laiva laiva = new Laiva(2);
+        toinen.setAmmuttu(true);
+        toinen.setLaiva(laiva);
+        ruutu.setAmmuttu(true);
+        ruutu.setLaiva(laiva);
         assertEquals(toinen, ruutu);
     }
 
     @Test
-    public void equalsToimiiKunEriRuutu() {
+    public void equalsToimiiKunRuudullaEriSisalto() {
         Ruutu toinen = new Ruutu(1, 2);
-        toinen.setSisaltaaLaivan(true);
+        toinen.setAmmuttu(true);
+        assertFalse(ruutu == toinen);
+    }
+
+    @Test
+    public void equalsToimiiKunEriRuutu() {
+        Ruutu toinen = new Ruutu(1, 3);
         assertFalse(ruutu == toinen);
     }
 }

@@ -8,3 +8,7 @@ Päivä | Tunnit | Kuvaus | Muita huomioita
 27.03.2017 | 1.5h | Laudalle laivoja lisäävän metodin muokkailua ja testien päivittämistä
 28.03.2017 | 3h | Testejä lisää
 30.03.2017 | 3.5h | Lisätty pelaamisen kannalta oleellista toiminnallisuutta, jonka myötä mietitty koko luokkarakennetta paljolti uudestaan, palattu Ohjan materiaaleihin :D | Nykyinen ohjelma ei toimi halutulla tavalla, sillä laudan ruudut ja laivan ruudut eivät viittaa samaan paikkaan. Ohjelma sisältää paljon tulevaisuudessa turhia apumetodeja, ja testitkään ei siksi mielekkäitä. Pitää miettiä rakennetta uusiksi.
+3.4.2017 | 1h | Mietitty uudelleen Laiva-luokan toteutusta (luokka vs. rajapinta), luotu uusi Laiva-luokka
+4.4.2017 | 3h | Toteutettu Laiva-luokka uudelleen niin, että kukin ruutu pitää kirjaa siihen liittyvästä Laivasta, kirjoitettu lähes kaikki testit uusiksi
+5.4.2017 | 2h | Täydennetty testejä, aloitettu käyttöliittymän toteutus
+6.6.2017 | 3h | Jatkettu käyttöliittymän suunnittelua

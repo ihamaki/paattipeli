@@ -11,9 +11,6 @@ public class LautaTest {
 
     private Lauta lauta;
 
-    public LautaTest() {
-    }
-
     @Before
     public void setUp() {
         this.lauta = new Lauta(5);
@@ -33,60 +30,67 @@ public class LautaTest {
     public void ruutujenAlustusToimii() {
         for (int i = 0; i < lauta.getKoko(); i++) {
             for (int j = 0; j < lauta.getKoko(); j++) {
-                assertEquals(false, lauta.getRuudut()[i][j].isSisaltaaLaivan());
-                assertEquals(false, lauta.getRuudut()[i][j].isAmmuttu());
-                assertEquals(false, lauta.getRuudut()[i][j].isTuhoutunut());
+                assertEquals(false, lauta.getRuudut()[i][j].getAmmuttu());
+                assertEquals(false, lauta.getRuudut()[i][j].getTuhoutunut());
+                assertNull(lauta.getRuudut()[i][j].getLaiva());
             }
         }
     }
 
     @Test
-    public void laivatEiTuhottuKunVainOsaTuhottu() {
-        ArrayList<Ruutu> laivanRuudut = luoListaRuuduista();
-        lauta.alustaLaiva(laivanRuudut);
-        lauta.getLaivat().get(0).getRuudut().get(0).setAmmuttu(true);
-        lauta.getLaivat().get(0).getRuudut().get(0).setTuhoutunut(true);
-        assertEquals(false, lauta.kaikkiLaivatTuhottu());
+    public void ammuToimiiKunRuutuLaudalla() {
+        lauta.lisaaLaivat();
+        lauta.ammu(1, 2);
+        assertEquals(true, lauta.getRuudut()[1][2].getAmmuttu());
+        assertEquals(true, lauta.getRuudut()[1][2].getTuhoutunut());
+        assertEquals(1, lauta.getLaivat().get(0).getEhjatOsat());
+        assertEquals(false, lauta.getLaivat().get(0).getTuhoutunut());
+    }
+
+    @Test
+    public void ammuToimiiOikeinKunRuutuEiLaudalla() {
+        lauta.lisaaLaivat();
+        lauta.ammu(-2, 2);
+        assertEquals(false, lauta.getRuudut()[1][2].getAmmuttu());
+        assertEquals(false, lauta.getRuudut()[1][2].getTuhoutunut());
+        assertEquals(2, lauta.getLaivat().get(0).getEhjatOsat());
+        assertEquals(false, lauta.getLaivat().get(0).getTuhoutunut());
     }
 
     @Test
     public void laivatTuhottuKunKaikkiTuhoutuneet() {
-        ArrayList<Ruutu> laivanRuudut = luoListaRuuduista();
-        lauta.alustaLaiva(laivanRuudut);
-        lauta.getLaivat().get(0).getRuudut().get(0).setAmmuttu(true);
-        lauta.getLaivat().get(0).getRuudut().get(0).setTuhoutunut(true);
-        lauta.getLaivat().get(0).getRuudut().get(1).setAmmuttu(true);
-        lauta.getLaivat().get(0).getRuudut().get(1).setTuhoutunut(true);
+        ArrayList<Laiva> laivat = new ArrayList<>();
+        laivat.add(new Laiva(1));
+        laivat.add(new Laiva(2));
+        lauta.setLaivat(laivat);
+        lauta.getLaivat().get(0).ammu();
+        lauta.getLaivat().get(1).ammu();
+        lauta.getLaivat().get(1).ammu();
         assertEquals(true, lauta.kaikkiLaivatTuhottu());
     }
 
     @Test
-    public void laivanLisaysToimiiKunRuutuPelilaudalla() {
-        ArrayList<Ruutu> laivanRuudut = luoListaRuuduista();
-        lauta.alustaLaiva(laivanRuudut);
-
-        laivanRuudut.get(0).setSisaltaaLaivan(true);
-        laivanRuudut.get(1).setSisaltaaLaivan(true);
-        Laiva laiva = new Laiva(laivanRuudut);
-
-        assertEquals(laiva, lauta.getLaivat().get(0));
+    public void laivatEiTuhottuKunVainOsaTuhoutunut() {
+        ArrayList<Laiva> laivat = new ArrayList<>();
+        laivat.add(new Laiva(1));
+        laivat.add(new Laiva(2));
+        lauta.setLaivat(laivat);
+        lauta.getLaivat().get(0).ammu();
+        lauta.getLaivat().get(1).ammu();
+        assertEquals(false, lauta.kaikkiLaivatTuhottu());
     }
 
     @Test
-    public void laivaaEiLisataKunRuutuLaudanUlkopuolella() {
-        ArrayList<Ruutu> laivanRuudut = new ArrayList<>();
-        laivanRuudut.add(new Ruutu(-1, 2));
-        laivanRuudut.add(new Ruutu(0, 2));
-
-        lauta.alustaLaiva(laivanRuudut);
-
-        assertEquals(true, lauta.getLaivat().isEmpty());
+    public void equalsToimiiKunSamaLauta() {
+        Lauta toinen = new Lauta(5);
+        assertEquals(toinen, lauta);
     }
 
-    public ArrayList<Ruutu> luoListaRuuduista() {
-        ArrayList<Ruutu> laivanRuudut = new ArrayList<>();
-        laivanRuudut.add(new Ruutu(1, 2));
-        laivanRuudut.add(new Ruutu(1, 3));
-        return laivanRuudut;
+    @Test
+    public void equalsToimiiKunEriLaivatLaudalla() {
+        Lauta toinen = new Lauta(5);
+        toinen.lisaaLaivat();
+        assertFalse(lauta == toinen);
     }
+
 }

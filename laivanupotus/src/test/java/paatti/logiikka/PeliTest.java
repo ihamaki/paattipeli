@@ -11,9 +11,6 @@ public class PeliTest {
 
     private Peli peli;
 
-    public PeliTest() {
-    }
-
     @Before
     public void setUp() {
         this.peli = new Peli(5);
@@ -32,66 +29,67 @@ public class PeliTest {
     }
 
     @Test
-    public void pelinAlussaLaivatLaudalla() {
-        peli.lisaaLaivat(peli.getLauta1(), peli.getLauta2());
-        ArrayList<Laiva> laivat = luoLaivat();
-        assertEquals(laivat.get(0).toString(), peli.getLauta1().getLaivat().get(0).toString());
-        assertEquals(laivat.get(1).toString(), peli.getLauta2().getLaivat().get(0).toString());
-    }
-
-    @Test
     public void ammuToimiiRuudulleJossaEiLaivaa() {
-        peli.lisaaLaivat(peli.getLauta1(), peli.getLauta2());
-        peli.ammu(0, 0, peli.getLauta1());
-        peli.getLauta1().kaikkiLaivatTuhottu();
-        assertEquals(true, peli.getLauta1().getRuudut()[0][0].isAmmuttu());
-        assertEquals(false, peli.getLauta1().getRuudut()[0][0].isSisaltaaLaivan());
-        assertEquals(false, peli.getLauta1().getRuudut()[0][0].isTuhoutunut());
+        peli.getLauta1().lisaaLaivat();
+        peli.ammu(peli.getLauta1(), 2, 2);
+        assertEquals(true, peli.getLauta1().getRuudut()[2][2].getAmmuttu());
+        assertEquals(false, peli.getLauta1().getRuudut()[2][2].getTuhoutunut());
+        assertEquals(2, peli.getLauta1().getLaivat().get(0).getEhjatOsat());
+        assertEquals(false, peli.getLauta1().getLaivat().get(0).getTuhoutunut());
     }
 
     @Test
     public void ammuToimiiKunOsuuLaivaanJaLaivaEiTuhoudu() {
-        peli.lisaaLaivat(peli.getLauta1(), peli.getLauta2());
-        peli.ammu(1, 2, peli.getLauta1());
-        peli.getLauta1().kaikkiLaivatTuhottu();
-        assertEquals(true, peli.getLauta1().getRuudut()[1][2].isAmmuttu());
-        assertEquals(true, peli.getLauta1().getRuudut()[1][2].isSisaltaaLaivan());
-        assertEquals(true, peli.getLauta1().getRuudut()[1][2].isTuhoutunut());
-        assertEquals(false, peli.getLauta1().getLaivat().get(0).isTuhoutunut());
+        peli.getLauta1().lisaaLaivat();
+        peli.ammu(peli.getLauta1(), 1, 2);
+        assertEquals(true, peli.getLauta1().getRuudut()[1][2].getAmmuttu());
+        assertEquals(true, peli.getLauta1().getRuudut()[1][2].getTuhoutunut());
+        assertEquals(1, peli.getLauta1().getLaivat().get(0).getEhjatOsat());
+        assertEquals(false, peli.getLauta1().getLaivat().get(0).getTuhoutunut());
     }
 
     @Test
     public void ammuToimiiKunOsuuLaivaanJaLaivaTuhoutuu() {
-        peli.lisaaLaivat(peli.getLauta1(), peli.getLauta2());
-        peli.ammu(1, 2, peli.getLauta1());
-        peli.ammu(1, 3, peli.getLauta1());
-        peli.ammu(1, 4, peli.getLauta1());
-        peli.getLauta1().kaikkiLaivatTuhottu();
-        assertEquals(true, peli.getLauta1().getLaivat().get(0).isTuhoutunut());
+        peli.getLauta1().lisaaLaivat();
+        peli.ammu(peli.getLauta1(), 1, 2);
+        peli.ammu(peli.getLauta1(), 1, 3);
+        assertEquals(true, peli.getLauta1().getRuudut()[1][2].getAmmuttu());
+        assertEquals(true, peli.getLauta1().getRuudut()[1][2].getTuhoutunut());
+        assertEquals(true, peli.getLauta1().getRuudut()[1][3].getAmmuttu());
+        assertEquals(true, peli.getLauta1().getRuudut()[1][3].getTuhoutunut());
+        assertEquals(0, peli.getLauta1().getLaivat().get(0).getEhjatOsat());
+        assertEquals(true, peli.getLauta1().getLaivat().get(0).getTuhoutunut());
     }
 
-    public ArrayList<Laiva> luoLaivat() {
-        ArrayList<Ruutu> laivanRuudut1 = new ArrayList<>();
-        ArrayList<Ruutu> laivanRuudut2 = new ArrayList<>();
+    @Test
+    public void onkoHavinnytPalauttaaTrueKunPelaajanKaikkiLaivatTuhottu() {
+        peli.getLauta1().lisaaLaivat();
+        peli.ammu(peli.getLauta1(), 1, 2);
+        peli.ammu(peli.getLauta1(), 1, 3);
+        assertEquals(true, peli.onkoHavinnyt(peli.getLauta1()));
+    }
 
-        laivanRuudut1.add(new Ruutu(1, 2));
-        laivanRuudut1.add(new Ruutu(1, 3));
-        laivanRuudut1.add(new Ruutu(1, 4));
+    @Test
+    public void onkoHavinnytPalauttaaFalseKunLaivojaJaljella() {
+        peli.getLauta1().lisaaLaivat();
+        peli.ammu(peli.getLauta1(), 1, 2);
+        assertEquals(false, peli.onkoHavinnyt(peli.getLauta1()));
+    }
 
-        laivanRuudut2.add(new Ruutu(2, 2));
-        laivanRuudut2.add(new Ruutu(3, 2));
-        laivanRuudut2.add(new Ruutu(4, 2));
-
-        for (int i = 0; i < 3; i++) {
-            laivanRuudut1.get(i).setSisaltaaLaivan(true);
-            laivanRuudut2.get(i).setSisaltaaLaivan(true);
-        }
-
-        ArrayList<Laiva> laivat = new ArrayList<>();
-        laivat.add(new Laiva(laivanRuudut1));
-        laivat.add(new Laiva(laivanRuudut2));
-
-        return laivat;
+    @Test
+    public void peliPaattynytKunToinenPelaajaHavinnyt() {
+        peli.getLauta1().lisaaLaivat();
+        peli.getLauta2().lisaaLaivat();
+        peli.ammu(peli.getLauta1(), 1, 2);
+        peli.ammu(peli.getLauta1(), 1, 3);
+        assertEquals(true, peli.onkoPeliPaattynyt());
+    }
+    
+    @Test
+    public void peliEiPaattynytKunMolemmillaLaivoja() {
+        peli.getLauta1().lisaaLaivat();
+        peli.getLauta2().lisaaLaivat();
+        assertEquals(false, peli.onkoPeliPaattynyt());
     }
 
 }

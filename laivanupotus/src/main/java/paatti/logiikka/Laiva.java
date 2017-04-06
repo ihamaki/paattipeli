@@ -1,49 +1,42 @@
 package paatti.logiikka;
 
-import java.util.ArrayList;
-import java.util.List;
+/**
+ * Laiva pitää sisällään määrällisen tiedon sen ehjistä osista, sekä tiedon siitä,
+ * onko laiva kokonaisuudessaan ehjä vai tuhoutunut.
+ */
 
 public class Laiva {
 
+    private int ehjatOsat;
     private boolean tuhoutunut;
-    private List<Ruutu> ruudut;
 
-    public Laiva(List<Ruutu> laivanRuudut) {
-        this.ruudut = laivanRuudut;
-        this.tuhoutunut = false;
+    /**
+     * Laivan konstruktori, joka määrittää laivan koon.
+     * 
+     * @param koko Laivan koko eli siihen liittyvien ruutujen määrä
+     */
+    public Laiva(int koko) {
+        this.ehjatOsat = koko;
     }
 
-    public boolean isTuhoutunut() {
+    public int getEhjatOsat() {
+        return ehjatOsat;
+    }
+
+    
+    public boolean getTuhoutunut() {
         return tuhoutunut;
     }
 
-    public void setTuhoutunut(boolean tuhoutunut) {
-        this.tuhoutunut = tuhoutunut;
-    }
-
-    public List<Ruutu> getRuudut() {
-        return ruudut;
-    }
-
-    public void tarkistaOnkoTuhoutunut() {
-        int tuhoutuneet = 0;
-        for (Ruutu ruutu : ruudut) {
-            if (ruutu.isTuhoutunut()) {
-                tuhoutuneet++;
-            }
+    /**
+     * Vähentää laivan ehjien osien määrä yhdellä, ja mikäli ehjien osien
+     * määrä on 0, merkitsee laivan tuhoutuneeksi.
+     */
+    public void ammu() {
+        ehjatOsat--;
+        if (ehjatOsat == 0) {
+            tuhoutunut = true;
         }
-        if (tuhoutuneet == ruudut.size()) {
-            this.setTuhoutunut(true);
-        }
-    }
-
-    @Override
-    public String toString() {
-        String osat = "";
-        for (int i = 0; i < ruudut.size(); i++) {
-            osat += ruudut.get(i) + " ";
-        }
-        return osat + "tuhoutunut:" + this.isTuhoutunut();
     }
 
     @Override
@@ -54,22 +47,9 @@ public class Laiva {
         if (this.getClass() != o.getClass()) {
             return false;
         }
-
         Laiva verrattava = (Laiva) o;
 
-        for (Ruutu ruutu : this.ruudut) {
-            if (!verrattava.getRuudut().contains(ruutu)) {
-                return false;
-            }
-        }
-
-        for (Ruutu ruutu : verrattava.getRuudut()) {
-            if (!this.ruudut.contains(ruutu)) {
-                return false;
-            }
-        }
-
-        return this.tuhoutunut == verrattava.tuhoutunut;
+        return this.ehjatOsat == verrattava.ehjatOsat
+                && this.tuhoutunut == verrattava.tuhoutunut;
     }
-
 }

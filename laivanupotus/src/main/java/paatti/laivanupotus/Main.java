@@ -1,13 +1,17 @@
 package paatti.laivanupotus;
 
 import java.util.Scanner;
+import javax.swing.SwingUtilities;
+import paatti.kayttoliittyma.Kayttoliittyma;
 import paatti.logiikka.Peli;
 
+/**
+ * Luokka käynnistää pelin graafisen käyttöliittymän.
+ */
 public class Main {
-    
+
     public static void main(String[] args) {
-        Scanner lukija = new Scanner(System.in);
-        Peli paattipeli = new Peli(5);
-        paattipeli.pelaa();
+        Kayttoliittyma k = new Kayttoliittyma(10);
+        SwingUtilities.invokeLater(k);
     }
 }

@@ -3,12 +3,23 @@ package paatti.logiikka;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Lauta pitää sisällään kaksiulotteisen taulukon pelilaudan ruuduista, sekä
+ * listana tiedon laudalle lisätyistä laivoista. Lauta tarjoaa metodit peli-
+ * tilanteen muuttamiseen ja päivittämiseen.
+ */
+
 public class Lauta {
 
     private int koko;
     private Ruutu[][] ruudut;
     private List<Laiva> laivat;
-
+    
+    /**
+     * Laudan konstruktori. 
+     * 
+     * @param koko pelilaudan yhden sivun pituus
+     */
     public Lauta(int koko) {
         this.koko = koko;
         this.ruudut = new Ruutu[koko][koko];
@@ -28,11 +39,39 @@ public class Lauta {
         return laivat;
     }
 
+    public void setLaivat(List<Laiva> laivat) {
+        this.laivat = laivat;
+    }
+    
+    
+    public void ammu(int x, int y) {
+        if (x < 0 || y < 0 || x >= koko || y >= koko || ruudut[x][y].getAmmuttu()) {
+            return;
+        }
+        if (ruudut[x][y].getLaiva() != null) {
+            ruudut[x][y].getLaiva().ammu();
+            ruudut[x][y].setTuhoutunut(true);
+        }
+        ruudut[x][y].setAmmuttu(true);
+    }
+
+    public void lisaaLaivat() {
+        // laivojen lisäys käyttöliittymän avulla
+        Laiva eka = new Laiva(2);
+        ruudut[1][2].setLaiva(eka);
+        ruudut[1][3].setLaiva(eka);
+        laivat.add(eka);
+    }
+    
+    /**
+     * Metodi tarkistaa pelilaudan laivojen statuksen.
+     * 
+     * @return true jos kaikki pelilaudan laivat tuhottu, muuten false
+     */
     public boolean kaikkiLaivatTuhottu() {
         int tuhottu = 0;
         for (Laiva laiva : laivat) {
-            laiva.tarkistaOnkoTuhoutunut();
-            if (laiva.isTuhoutunut()) {
+            if (laiva.getTuhoutunut()) {
                 tuhottu++;
             }
         }
@@ -47,71 +86,6 @@ public class Lauta {
         }
     }
 
-    public void tulostaLauta() {
-        for (int i = 0; i < koko; i++) {
-            System.out.print("\t " + (i + 1));
-        }
-        System.out.println("");
-
-        for (int rivi = 0; rivi < koko; rivi++) {
-            System.out.print((rivi + 1));
-            for (int sarake = 0; sarake < koko; sarake++) {
-                if (ruudut[rivi][sarake].isAmmuttu()) {
-                    if (ruudut[rivi][sarake].isTuhoutunut()) {
-                        System.out.print("\t[X]");
-                    } else {
-                        System.out.print("\t[0]");
-                    }
-                } else {
-                    System.out.print("\t[ ]");
-                }
-            }
-            System.out.println("");
-        }
-    }
-
-    public void tulostaLautaJaLaivat() {
-        for (int i = 0; i < koko; i++) {
-            System.out.print("\t " + (i + 1));
-        }
-        System.out.println("");
-
-        for (int rivi = 0; rivi < koko; rivi++) {
-            System.out.print((rivi + 1));
-            for (int sarake = 0; sarake < koko; sarake++) {
-                if (ruudut[rivi][sarake].isSisaltaaLaivan()) {
-                    System.out.print("\t[*]");
-                } else {
-                    System.out.print("\t[ ]");
-                }
-            }
-            System.out.println("");
-        }
-    }
-
-    public void alustaLaiva(List<Ruutu> laivanRuudut) {
-        for (Ruutu ruutu : laivanRuudut) {
-            if (ruutu.getX() < 0 || ruutu.getY() < 0 || ruutu.getX() >= koko || ruutu.getY() >= koko) {
-                return;
-            }
-            ruudut[ruutu.getX()][ruutu.getY()].setSisaltaaLaivan(true);
-        }
-        Laiva laiva = new Laiva(laivanRuudut);
-        laivat.add(laiva);
-    }
-    
-    public void ammuLaivanRuudut(int x, int y) {
-        for (int i = 0; i < laivat.size(); i++) {
-            Laiva laiva = laivat.get(i);
-            for (Ruutu ruutu : laiva.getRuudut()) {
-                if (ruutu.getX() == x && ruutu.getY() == y) {
-                    ruutu.setAmmuttu(true);
-                    ruutu.setTuhoutunut(true);
-                }
-            }
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null) {
@@ -120,9 +94,16 @@ public class Lauta {
         if (this.getClass() != o.getClass()) {
             return false;
         }
-        
+
         Lauta verrattava = (Lauta) o;
-        
-        return this.getKoko() == verrattava.getKoko();
+
+        for (int i = 0; i < laivat.size(); i++) {
+            if (this.laivat.get(i) != verrattava.laivat.get(i)) {
+                System.out.println("laiva");
+                return false;
+            }
+        }
+
+        return this.koko == verrattava.koko;
     }
 }
