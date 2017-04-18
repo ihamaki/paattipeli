@@ -99,7 +99,6 @@ public class Lauta {
 
         for (int i = 0; i < laivat.size(); i++) {
             if (this.laivat.get(i) != verrattava.laivat.get(i)) {
-                System.out.println("laiva");
                 return false;
             }
         }

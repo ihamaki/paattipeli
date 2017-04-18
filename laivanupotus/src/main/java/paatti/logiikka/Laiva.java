@@ -1,10 +1,9 @@
 package paatti.logiikka;
 
 /**
- * Laiva pitää sisällään määrällisen tiedon sen ehjistä osista, sekä tiedon siitä,
- * onko laiva kokonaisuudessaan ehjä vai tuhoutunut.
+ * Laiva pitää sisällään määrällisen tiedon sen ehjistä osista, sekä tiedon
+ * siitä, onko laiva kokonaisuudessaan ehjä vai tuhoutunut.
  */
-
 public class Laiva {
 
     private int ehjatOsat;
@@ -12,7 +11,7 @@ public class Laiva {
 
     /**
      * Laivan konstruktori, joka määrittää laivan koon.
-     * 
+     *
      * @param koko Laivan koko eli siihen liittyvien ruutujen määrä
      */
     public Laiva(int koko) {
@@ -23,14 +22,13 @@ public class Laiva {
         return ehjatOsat;
     }
 
-    
     public boolean getTuhoutunut() {
         return tuhoutunut;
     }
 
     /**
-     * Vähentää laivan ehjien osien määrä yhdellä, ja mikäli ehjien osien
-     * määrä on 0, merkitsee laivan tuhoutuneeksi.
+     * Vähentää laivan ehjien osien määrä yhdellä, ja mikäli ehjien osien määrä
+     * on 0, merkitsee laivan tuhoutuneeksi.
      */
     public void ammu() {
         ehjatOsat--;

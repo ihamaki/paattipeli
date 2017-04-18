@@ -3,15 +3,14 @@ package paatti.kayttoliittyma;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import paatti.logiikka.Peli;
 
 /**
  * Luokka luo pelille graafisen käyttöliittymän.
  */
-
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
@@ -35,8 +34,14 @@ public class Kayttoliittyma implements Runnable {
 
         luoKomponentit(frame.getContentPane());
 
+        KlikkaustenKuuntelija k = new KlikkaustenKuuntelija(peli, pelaaja1.getPainikkeet(),
+                pelaaja2.getPainikkeet(), pelaaja1, pelaaja2);
+        lisaaPainikkeilleKuuntelija(k, pelaaja1.getPainikkeet());
+        lisaaPainikkeilleKuuntelija(k, pelaaja2.getPainikkeet());
+
         frame.pack();
         frame.setVisible(true);
+        this.peli.pelaa();
     }
 
     private void luoKomponentit(Container container) {
@@ -48,6 +53,25 @@ public class Kayttoliittyma implements Runnable {
 
     public JFrame getFrame() {
         return frame;
+    }
+
+//    public void alustaPainikkeet() {
+//        for (int i = 0; i < lauta.getKoko(); i++) {
+//            for (int j = 0; j < lauta.getKoko(); j++) {
+//                JButton painike = new JButton();
+//                painikkeet[i][j] = painike;
+//                add(painike);
+//            }
+//        }
+//    }
+
+    public void lisaaPainikkeilleKuuntelija(KlikkaustenKuuntelija kuuntelija,
+            JButton[][] painikkeet) {
+        for (int i = 0; i < painikkeet.length; i++) {
+            for (int j = 0; j < painikkeet.length; j++) {
+                painikkeet[i][j].addActionListener(kuuntelija);
+            }
+        }
     }
 
 }

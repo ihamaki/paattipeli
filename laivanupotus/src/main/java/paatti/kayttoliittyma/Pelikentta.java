@@ -24,6 +24,14 @@ public class Pelikentta extends JPanel {
         this.painikkeet = new JButton[this.lauta.getKoko()][this.lauta.getKoko()];
         alustaPainikkeet();
     }
+
+    public Lauta getLauta() {
+        return lauta;
+    }
+
+    public JButton[][] getPainikkeet() {
+        return painikkeet;
+    }
     
     public void alustaPainikkeet() {
         for (int i = 0; i < lauta.getKoko(); i++) {
@@ -35,13 +43,14 @@ public class Pelikentta extends JPanel {
         }
     }
     
-    public void paivita() {
+    public void paivita(Lauta paivitettyLauta) {
+        lauta = paivitettyLauta;
         for (int i = 0; i < lauta.getKoko(); i++) {
             for (int j = 0; j < lauta.getKoko(); j++) {
                 Ruutu ruutu = lauta.getRuudut()[i][j];
                 JButton painike = painikkeet[i][j];
-                if (!ruutu.getAmmuttu()) {
-                    if (ruutu.getTuhoutunut()) {
+                if (ruutu.getAmmuttu()) {
+                    if (ruutu.getLaiva() != null && ruutu.getAmmuttu()) {
                         painike.setEnabled(false);
                         painike.setBackground(Color.RED);
                     } else {
