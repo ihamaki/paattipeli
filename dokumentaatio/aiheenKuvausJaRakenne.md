@@ -11,10 +11,18 @@
 - etsi laivoja vastustajan pelilaudalta ruutuja klikkaamalla
 - pelin päätyttyä sulje peli/aloita uusi peli
 
-**Alustava luokkakaavio:**
+**Luokkakaavio:**
 
 ![Luokkakaavio](https://github.com/ihamaki/paattipeli/blob/master/dokumentaatio/luokkakaavio)
 
 Pelilaudan kooksi on kaaviossa oletettu 10x10 ja laivojen määräksi 5.
 
 **Sekvenssikaaviot:**
+
+Ensimmäisessä sekvenssikaaviossa klikataan ruutua pelivuorossa olevalta laudalta.
+
+![Sekvenssikaavio1](https://github.com/ihamaki/paattipeli/blob/master/dokumentaatio/sekvenssi1.png)
+
+Toisessa sekvenssikaaviossa klikataan ruutua väärältä laudalta, jolloin mitään ei tapahdu.
+
+![Sekvenssikaavio2](https://github.com/ihamaki/paattipeli/blob/master/dokumentaatio/sekvenssi2.png)
