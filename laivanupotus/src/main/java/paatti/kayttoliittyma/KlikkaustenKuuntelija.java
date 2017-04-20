@@ -81,10 +81,15 @@ public class KlikkaustenKuuntelija implements ActionListener {
      */
     public void ammu(int x, int y, Lauta lauta, Pelikentta pelaaja) {
         peli.ammu(lauta, x, y);
-        pelaaja.paivita(lauta);
         paivitaPelinTila();
+        pelaaja.paivita(lauta);
     }
 
+    /**
+     * Päivittää pelivuorossa olevan pelaajan pelitilannetta kuvaavaan
+     * tekstikenttään ja vaihtaa pelattavana olevan laudan. Jos peli on
+     * päättynyt, ilmoittaa voittajan.
+     */
     public void paivitaPelinTila() {
         if (peli.onkoPeliPaattynyt()) {
             peli.vaihdaPelattava();
