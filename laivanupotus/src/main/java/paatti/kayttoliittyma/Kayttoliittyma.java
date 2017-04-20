@@ -1,10 +1,14 @@
 package paatti.kayttoliittyma;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import paatti.logiikka.Peli;
 
@@ -18,12 +22,19 @@ public class Kayttoliittyma implements Runnable {
     private Peli peli;
     private Pelikentta pelaaja1;
     private Pelikentta pelaaja2;
+    private JButton[][] painikkeet1;
+    private JButton[][] painikkeet2;
+    private JLabel pelinTila;
 
     public Kayttoliittyma(int koko) {
         this.koko = koko;
         this.peli = new Peli(koko);
-        pelaaja1 = new Pelikentta(peli.getLauta1());
-        pelaaja2 = new Pelikentta(peli.getLauta2());
+        this.painikkeet1 = new JButton[koko][koko];
+        this.painikkeet2 = new JButton[koko][koko];
+        alustaPainikkeet(painikkeet1);
+        alustaPainikkeet(painikkeet2);
+        pelaaja1 = new Pelikentta(peli, painikkeet1);
+        pelaaja2 = new Pelikentta(peli, painikkeet2);
     }
 
     @Override
@@ -34,37 +45,69 @@ public class Kayttoliittyma implements Runnable {
 
         luoKomponentit(frame.getContentPane());
 
-        KlikkaustenKuuntelija k = new KlikkaustenKuuntelija(peli, pelaaja1.getPainikkeet(),
-                pelaaja2.getPainikkeet(), pelaaja1, pelaaja2);
-        lisaaPainikkeilleKuuntelija(k, pelaaja1.getPainikkeet());
-        lisaaPainikkeilleKuuntelija(k, pelaaja2.getPainikkeet());
+        KlikkaustenKuuntelija k = new KlikkaustenKuuntelija(peli, painikkeet1,
+                painikkeet2, pelaaja1, pelaaja2, pelinTila);
+        lisaaPainikkeilleKuuntelija(k, painikkeet1);
+        lisaaPainikkeilleKuuntelija(k, painikkeet2);
 
         frame.pack();
         frame.setVisible(true);
+        frame.setResizable(false);
         this.peli.pelaa();
     }
 
+    /**
+     * Metodi luo käyttöliittymän eri komponentit.
+     *
+     * @param container
+     */
     private void luoKomponentit(Container container) {
-        container.setLayout(new GridLayout(1, 0));
+        container.setLayout(new BorderLayout());
+        JPanel pelaajat = new JPanel(new GridLayout());
+        JPanel kentat = new JPanel(new GridLayout(1, 0));
 
-        container.add(pelaaja1);
-        container.add(pelaaja2);
+        pelinTila = new JLabel("Pelaajan 1 vuoro", SwingConstants.CENTER);
+        JLabel pel1 = new JLabel("Pelaaja 1", SwingConstants.CENTER);
+        JLabel pel2 = new JLabel("Pelaaja 2", SwingConstants.CENTER);
+
+        pelaajat.add(pel1);
+        pelaajat.add(pel2);
+        kentat.add(pelaaja1);
+        kentat.add(pelaaja2);
+
+        container.add(pelaajat, BorderLayout.NORTH);
+        container.add(kentat, BorderLayout.CENTER);
+        container.add(pelinTila, BorderLayout.SOUTH);
     }
 
     public JFrame getFrame() {
         return frame;
     }
 
-//    public void alustaPainikkeet() {
-//        for (int i = 0; i < lauta.getKoko(); i++) {
-//            for (int j = 0; j < lauta.getKoko(); j++) {
-//                JButton painike = new JButton();
-//                painikkeet[i][j] = painike;
-//                add(painike);
-//            }
-//        }
-//    }
+    public JLabel getPelinTila() {
+        return pelinTila;
+    }
 
+    /**
+     * Metodi luo uudet JButtonit kaksiulotteiseen taulukkoon.
+     *
+     * @param painikkeet Kaksiulotteinen taulukko, johon uudet napit lisätään
+     */
+    public void alustaPainikkeet(JButton[][] painikkeet) {
+        for (int i = 0; i < koko; i++) {
+            for (int j = 0; j < koko; j++) {
+                JButton painike = new JButton();
+                painikkeet[i][j] = painike;
+            }
+        }
+    }
+
+    /**
+     * Metodi lisää kuuntelijan jokaiselle JButtonille.
+     *
+     * @param kuuntelija Klikkauksia kuunteleva ja niihin reagoiva kuuntelija
+     * @param painikkeet Kaksiulotteinen JButtonit sisältävä taulukko
+     */
     public void lisaaPainikkeilleKuuntelija(KlikkaustenKuuntelija kuuntelija,
             JButton[][] painikkeet) {
         for (int i = 0; i < painikkeet.length; i++) {

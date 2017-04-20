@@ -11,13 +11,13 @@ public class Peli {
 
     private Lauta lauta1;
     private Lauta lauta2;
-    private Lauta pelattava;
+    private int pelattava;
     private boolean peliPaattynyt;
 
     public Peli(int koko) {
         this.lauta1 = new Lauta(koko);
         this.lauta2 = new Lauta(koko);
-        this.pelattava = this.lauta1;
+        this.pelattava = 2;
         this.peliPaattynyt = false;
     }
 
@@ -29,14 +29,23 @@ public class Peli {
         return lauta2;
     }
 
-    public Lauta getPelattava() {
+    public int getPelattava() {
         return pelattava;
     }
 
     public void pelaa() {
-        this.pelattava.lisaaLaivat();
+        lauta1.lisaaLaivat();
+        lauta2.lisaaLaivat();
     }
 
+    /**
+     * Metodi ampuu koordinaattien osoittamaa ruutua sille parametrina annetulta
+     * laudalta.
+     *
+     * @param lauta Lauta, jonka ruutuihin metodi kohdistuu
+     * @param x Ammuttavan ruudun x-koordinaatti
+     * @param y Ammuttavan ruudun y-koordinaatti
+     */
     public void ammu(Lauta lauta, int x, int y) {
         lauta.ammu(x, y);
     }
@@ -52,19 +61,27 @@ public class Peli {
         return lauta.kaikkiLaivatTuhottu();
     }
 
+    /**
+     * Metodi tarkistaa, onko peli päättynyt.
+     *
+     * @return true jos toinen pelaaja on hävinnyt, false muuten
+     */
     public boolean onkoPeliPaattynyt() {
         if (onkoHavinnyt(lauta1) || onkoHavinnyt(lauta2)) {
             return true;
         }
-
         return false;
     }
 
+    /**
+     * Metodi vaihtaa pelattavan laudan. Vain pelivuorossa olevan laudan ruutuja
+     * voi ampua.
+     */
     public void vaihdaPelattava() {
-        if (this.pelattava == lauta1) {
-            this.pelattava = lauta2;
+        if (this.pelattava == 1) {
+            this.pelattava = 2;
         } else {
-            this.pelattava = lauta1;
+            this.pelattava = 1;
         }
     }
 

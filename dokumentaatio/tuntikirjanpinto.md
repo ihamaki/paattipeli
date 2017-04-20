@@ -11,4 +11,9 @@ Päivä | Tunnit | Kuvaus | Muita huomioita
 3.4.2017 | 1h | Mietitty uudelleen Laiva-luokan toteutusta (luokka vs. rajapinta), luotu uusi Laiva-luokka
 4.4.2017 | 3h | Toteutettu Laiva-luokka uudelleen niin, että kukin ruutu pitää kirjaa siihen liittyvästä Laivasta, kirjoitettu lähes kaikki testit uusiksi
 5.4.2017 | 2h | Täydennetty testejä, aloitettu käyttöliittymän toteutus
-6.6.2017 | 3h | Jatkettu käyttöliittymän suunnittelua
+6.4.2017 | 3h | Jatkettu käyttöliittymän suunnittelua
+13.4.2017 | 1h | Toteutettu klikkauksiin reagoiva luokka, pelilaudan ruudut reagoivat klikkauksiin
+14.4.2017 | 1.5h | Jatkettu käyttöliittymän ja klikkauskuuntelijan toteutusta, pelilauta osaa reagoida oikein, jos klikattu ruutu sisältää laivan
+18.4.2017 | 1.5h | Muokattu peliä siten, että vain pelattavana olevan laudan ruutujen klikkauksiin reagoidaan
+20.4.2017 | 4h | Lisätty käyttöliittymään tekstikenttiä pelilautojen lisäksi, lisätty klikkauskuuntelijalle tarkistus pelin mahdollisesta päättymisestä, tehty pikkumuutoksia logiikkaan, lisätty logiikkaan metodi yksittäisen laivan lisäykselle
+
