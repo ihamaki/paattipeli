@@ -66,9 +66,13 @@ public class Lauta {
      * Metodi lisää laudalle laivat muokkaamalla ruutujen tietoja.
      */
     public void lisaaLaivat() {
-        // laivojen lisäys käyttöliittymän avulla, ei vielä toteutusta
+        // laivojen lisäys käyttöliittymän avulla
+//        Laiva eka = new Laiva(2);
+//        ruudut[1][2].setLaiva(eka);
+//        ruudut[1][3].setLaiva(eka);
+//        laivat.add(eka);
         lisaaLaiva(2, 1, 1, 2);
-        lisaaLaiva(4, -1, 2, 4);
+//        lisaaLaiva(3, -1, 0, 0);
     }
 
     /**
@@ -84,9 +88,9 @@ public class Lauta {
         Laiva laiva = new Laiva(koko);
         for (int i = 0; i < koko; i++) {
             ruudut[x][y].setLaiva(laiva);
-            if (suunta == -1) {
+            if (suunta < 0) {
                 x++;
-            } else if (suunta == 1) {
+            } else {
                 y++;
             }
         }

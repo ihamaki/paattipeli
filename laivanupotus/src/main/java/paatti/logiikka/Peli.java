@@ -33,6 +33,7 @@ public class Peli {
         return pelattava;
     }
 
+    // apumetodi
     public void pelaa() {
         lauta1.lisaaLaivat();
         lauta2.lisaaLaivat();

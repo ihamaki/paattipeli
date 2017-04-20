@@ -26,7 +26,7 @@ public class PeliTest {
         Lauta lauta2 = new Lauta(5);
         assertEquals(lauta1, peli.getLauta1());
         assertEquals(lauta2, peli.getLauta2());
-        assertEquals(peli.getPelattava(), 1);
+        assertEquals(peli.getPelattava(), 2);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class PeliTest {
     @Test
     public void pelattavanLaudanVaihtoToimii() {
         peli.vaihdaPelattava();
-        assertEquals(2, peli.getPelattava());
+        assertEquals(1, peli.getPelattava());
     }
 
 }
