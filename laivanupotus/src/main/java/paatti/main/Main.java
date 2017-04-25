@@ -1,9 +1,11 @@
-package paatti.laivanupotus;
+package paatti.main;
 
 import java.util.Scanner;
 import javax.swing.SwingUtilities;
 import paatti.kayttoliittyma.Kayttoliittyma;
+import paatti.logiikka.Lauta;
 import paatti.logiikka.Peli;
+import paatti.logiikka.Ruutu;
 
 /**
  * Luokka käynnistää pelin graafisen käyttöliittymän.

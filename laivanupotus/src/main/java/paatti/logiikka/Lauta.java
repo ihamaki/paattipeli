@@ -5,8 +5,9 @@ import java.util.List;
 
 /**
  * Lauta pitää sisällään kaksiulotteisen taulukon pelilaudan ruuduista, sekä
- * listana tiedon laudalle lisätyistä laivoista. Lauta tarjoaa metodit peli-
- * tilanteen muuttamiseen ja päivittämiseen.
+ * listana tiedon laudalle lisätyistä laivoista. Lauta tarjoaa metodit laivojen
+ * lisäämiseen pelilaudalle, sekä metodit peli- tilanteen muuttamiseen ja
+ * päivittämiseen.
  */
 public class Lauta {
 
@@ -17,7 +18,7 @@ public class Lauta {
     /**
      * Laudan konstruktori.
      *
-     * @param koko pelilaudan yhden sivun pituus
+     * @param koko Pelilaudan yhden sivun pituus
      */
     public Lauta(int koko) {
         this.koko = koko;
@@ -63,30 +64,21 @@ public class Lauta {
     }
 
     /**
-     * Metodi lisää laudalle laivat muokkaamalla ruutujen tietoja.
-     */
-    public void lisaaLaivat() {
-        // laivojen lisäys käyttöliittymän avulla
-//        Laiva eka = new Laiva(2);
-//        ruudut[1][2].setLaiva(eka);
-//        ruudut[1][3].setLaiva(eka);
-//        laivat.add(eka);
-        lisaaLaiva(2, 1, 1, 2);
-//        lisaaLaiva(3, -1, 0, 0);
-    }
-
-    /**
      * Metodi lisää laudalle yhden laivan. Laiva rakennetaan
      * aloituskoordinaateista joko oikealle tai alas, riippuen suunnasta.
      *
-     * @param koko Laivan koko
+     * @param laivanKoko Laivan koko
      * @param suunta Laivan suunta, 1 jos vaaka, -1 jos pysty
      * @param x Laivan ensimmäisen ruudun x-koordinaatti
      * @param y Laivan ensimmäisen ruudun y-koordinaatti
+     * @return true jos laivan lisäys onnistuu, false muuten
      */
-    public void lisaaLaiva(int koko, int suunta, int x, int y) {
-        Laiva laiva = new Laiva(koko);
-        for (int i = 0; i < koko; i++) {
+    public boolean lisaaLaiva(int laivanKoko, int suunta, int x, int y) {
+        if (!tarkistaLaivanKelpoisuus(laivanKoko, suunta, x, y)) {
+            return false;
+        }
+        Laiva laiva = new Laiva(laivanKoko);
+        for (int i = 0; i < laivanKoko; i++) {
             ruudut[x][y].setLaiva(laiva);
             if (suunta < 0) {
                 x++;
@@ -95,6 +87,32 @@ public class Lauta {
             }
         }
         laivat.add(laiva);
+        return true;
+    }
+
+    /**
+     * Metodi tarkistaa, voiko laudalle lisätä laivan parametrien ehdoilla.
+     * Laivaa ei voi lisätä toisen laivan päälle.
+     *
+     * @param laivanKoko Laivan koko
+     * @param suunta Laivan suunta, 1 jos vaaka, -1 jos pysty
+     * @param x Laivan ensimmäisen ruudun x-koordinaatti
+     * @param y Laivan ensimmäisen ruudun y-koordinaatti
+     * @return true jos laivan lisäys onnistuu, false muuten
+     */
+    public boolean tarkistaLaivanKelpoisuus(int laivanKoko, int suunta, int x, int y) {
+        for (int i = 0; i < laivanKoko; i++) {
+            if (x < 0 || y < 0 || x >= koko || y >= koko
+                    || ruudut[x][y].getLaiva() != null) {
+                return false;
+            }
+            if (suunta < 0) {
+                x++;
+            } else {
+                y++;
+            }
+        }
+        return true;
     }
 
     /**

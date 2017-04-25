@@ -14,6 +14,11 @@ public class Peli {
     private int pelattava;
     private boolean peliPaattynyt;
 
+    /**
+     * Pelin konstruktori.
+     *
+     * @param koko Pelilaudan sivun pituus
+     */
     public Peli(int koko) {
         this.lauta1 = new Lauta(koko);
         this.lauta2 = new Lauta(koko);
@@ -35,8 +40,12 @@ public class Peli {
 
     // apumetodi
     public void pelaa() {
-        lauta1.lisaaLaivat();
-        lauta2.lisaaLaivat();
+        lauta1.lisaaLaiva(4, 1, 0, 0);
+        lauta1.lisaaLaiva(3, -1, 3, 1);
+        lauta1.lisaaLaiva(3, 1, 2, 7);
+        lauta2.lisaaLaiva(4, -1, 2, 7);
+        lauta2.lisaaLaiva(3, 1, 5, 2);
+        lauta2.lisaaLaiva(3, -1, 7, 3);
     }
 
     /**

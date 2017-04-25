@@ -14,7 +14,7 @@ public class Ruutu {
     private Laiva laiva;
 
     /**
-     * Ruudun konstruktori
+     * Ruudun konstruktori.
      *
      * @param x ruudun x-koordinaatti
      * @param y ruudun y-koordinaatti
