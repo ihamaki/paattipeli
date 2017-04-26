@@ -80,7 +80,7 @@ public class KlikkaustenKuuntelija implements ActionListener {
      * @param pelaaja Pelikenttä, joka päivitetään
      */
     public void ammu(int x, int y, Lauta lauta, Pelikentta pelaaja) {
-        peli.ammu(lauta, x, y);
+        lauta.ammu(x, y);
         paivitaPelinTila();
         pelaaja.paivita(lauta);
     }

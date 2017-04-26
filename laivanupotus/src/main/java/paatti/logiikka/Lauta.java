@@ -106,6 +106,7 @@ public class Lauta {
                     || ruudut[x][y].getLaiva() != null) {
                 return false;
             }
+
             if (suunta < 0) {
                 x++;
             } else {
@@ -114,7 +115,13 @@ public class Lauta {
         }
         return true;
     }
-    
+
+    /**
+     * Metodi tarkistaa, onko laudalle lisätty kaikki peliin sisältyvät 5
+     * laivaa.
+     *
+     * @return true jos kaikki laivat lisätty, false muuten
+     */
     public boolean onkoKaikkiLaivatLisatty() {
         return laivat.size() == 5;
     }

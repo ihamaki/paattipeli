@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_GB" lang="en_GB">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>LaivojenKuuntelija xref</title>
+<link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../apidocs/paatti/kayttoliittyma/LaivojenKuuntelija.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> paatti.kayttoliittyma;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.awt.event.ActionEvent;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.awt.event.ActionListener;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javax.swing.JButton;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> javax.swing.JLabel;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> paatti.logiikka.Lauta;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> paatti.logiikka.Peli;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../paatti/kayttoliittyma/LaivojenKuuntelija.html">LaivojenKuuntelija</a> <strong class="jxr_keyword">implements</strong> ActionListener {
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>      <strong class="jxr_keyword">private</strong> <a href="../../paatti/kayttoliittyma/Kayttoliittyma.html">Kayttoliittyma</a> kayttoliittyma;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>      <strong class="jxr_keyword">private</strong> <a href="../../paatti/logiikka/Peli.html">Peli</a> peli;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>      <strong class="jxr_keyword">private</strong> JButton[][] painikkeet1;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>      <strong class="jxr_keyword">private</strong> JButton[][] painikkeet2;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>      <strong class="jxr_keyword">private</strong> <a href="../../paatti/kayttoliittyma/Pelikentta.html">Pelikentta</a> pelaaja1;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>      <strong class="jxr_keyword">private</strong> <a href="../../paatti/kayttoliittyma/Pelikentta.html">Pelikentta</a> pelaaja2;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>      <strong class="jxr_keyword">private</strong> ArrayList&lt;JButton&gt; napit1;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>      <strong class="jxr_keyword">private</strong> ArrayList&lt;JButton&gt; napit2;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>      <strong class="jxr_keyword">private</strong> JLabel ohje;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>      <strong class="jxr_keyword">private</strong> JButton valittuLaiva;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> koko;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> suunta;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      <strong class="jxr_keyword">public</strong> <a href="../../paatti/kayttoliittyma/LaivojenKuuntelija.html">LaivojenKuuntelija</a>(<a href="../../paatti/kayttoliittyma/Kayttoliittyma.html">Kayttoliittyma</a> kayttoliittyma, <a href="../../paatti/logiikka/Peli.html">Peli</a> peli, JButton[][] painikkeet1,
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>              JButton[][] painikkeet2, <a href="../../paatti/kayttoliittyma/Pelikentta.html">Pelikentta</a> pelaaja1, <a href="../../paatti/kayttoliittyma/Pelikentta.html">Pelikentta</a> pelaaja2, ArrayList&lt;JButton&gt; napit1,
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>              ArrayList&lt;JButton&gt; napit2, JLabel ohje) {
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">this</strong>.kayttoliittyma = kayttoliittyma;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          <strong class="jxr_keyword">this</strong>.peli = peli;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          <strong class="jxr_keyword">this</strong>.painikkeet1 = painikkeet1;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          <strong class="jxr_keyword">this</strong>.painikkeet2 = painikkeet2;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>          <strong class="jxr_keyword">this</strong>.pelaaja1 = pelaaja1;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">this</strong>.pelaaja2 = pelaaja2;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">this</strong>.napit1 = napit1;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>          <strong class="jxr_keyword">this</strong>.napit2 = napit2;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>          <strong class="jxr_keyword">this</strong>.ohje = ohje;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>          <strong class="jxr_keyword">this</strong>.koko = 0;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">this</strong>.suunta = 1;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      }
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>      @Override
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(ActionEvent e) {
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">int</strong> pelattava = peli.getPelattava();
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">if</strong> (pelattava == 1) {
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>              haeValittuNappi(e, napit1);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>              haePelatunRuudunKoordinaatit(peli.getLauta1(), painikkeet1, pelaaja1, e);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (pelattava == 2) {
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>              haeValittuNappi(e, napit2);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>              haePelatunRuudunKoordinaatit(peli.getLauta2(), painikkeet2, pelaaja2, e);
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          }
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>      }
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> haeValittuNappi(ActionEvent e, ArrayList&lt;JButton&gt; napit) {
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; napit.size() - 3; i++) {
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>              <strong class="jxr_keyword">if</strong> (napit.get(i) == e.getSource()) {
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>                  valittuLaiva = napit.get(i);
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>                  koko = i + 1;
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>              }
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          }
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          <strong class="jxr_keyword">if</strong> (napit.get(napit.size() - 3) == e.getSource()) {
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>              suunta = 1;
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>              napit.get(napit.size() - 3).setEnabled(false);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>              napit.get(napit.size() - 2).setEnabled(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>          }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">if</strong> (napit.get(napit.size() - 2) == e.getSource()) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>              suunta = -1;
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>              napit.get(napit.size() - 3).setEnabled(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>              napit.get(napit.size() - 2).setEnabled(false);
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>          }
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          <strong class="jxr_keyword">if</strong> (napit.get(napit.size() - 1) == e.getSource()) {
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>              <strong class="jxr_keyword">if</strong> (peli.getPelattava() == 1) {
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>                  <strong class="jxr_keyword">if</strong> (kayttoliittyma.getPeli().getLauta1().onkoKaikkiLaivatLisatty()) {
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>                      kayttoliittyma.getPeli().vaihdaPelattava();
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>                      kayttoliittyma.valitseNaytettavaLauta();
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>                      ohje.setText(<span class="jxr_string">"Pelaaja "</span> + peli.getPelattava() + <span class="jxr_string">": Aseta laivat laudalle"</span>);
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                      ohje.setText(<span class="jxr_string">"Kaikki laivat tulee sijoittaa pelilaudalle"</span>);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  }
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>              } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (peli.getPelattava() == 2) {
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>                  <strong class="jxr_keyword">if</strong> (kayttoliittyma.getPeli().getLauta2().onkoKaikkiLaivatLisatty()) {
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>                      kayttoliittyma.getPeli().vaihdaPelattava();
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>                      kayttoliittyma.vaihdaTila();
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>                      kayttoliittyma.run();
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>                  } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>                      ohje.setText(<span class="jxr_string">"Kaikki laivat tulee sijoittaa pelilaudalle"</span>);
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>                  }
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>              }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          }
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> haePelatunRuudunKoordinaatit(<a href="../../paatti/logiikka/Lauta.html">Lauta</a> lauta, JButton[][] painikkeet,
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>              <a href="../../paatti/kayttoliittyma/Pelikentta.html">Pelikentta</a> pelaaja, ActionEvent e) {
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; painikkeet.length; i++) {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>              <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> j = 0; j &lt; painikkeet.length; j++) {
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>                  <strong class="jxr_keyword">if</strong> (painikkeet[i][j] == e.getSource()) {
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>                     <strong class="jxr_keyword">if</strong> (valittuLaiva != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>                         <strong class="jxr_keyword">if</strong> (kayttoliittyma.getPeli().lisaaLaiva(lauta, koko, suunta, i, j)) {
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>                             valittuLaiva.setEnabled(false);
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>                             valittuLaiva = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>                             koko = 0;
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>                             pelaaja.naytaLaivat(lauta);
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>                             ohje.setText(<span class="jxr_string">"Pelaaja "</span> + peli.getPelattava() + <span class="jxr_string">": Aseta laivat laudalle"</span>);
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>                         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>                             ohje.setText(<span class="jxr_string">"Laivaa ei voi sijoittaa toisen laivan päälle tai pelilaudan ulkopuolelle"</span>);
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>                         }
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>                     } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>                         ohje.setText(<span class="jxr_string">"Valitse laudalle sijoitettavan laivan koko"</span>);
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>                     }
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>                 }
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>             }
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>         }
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>     }
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2017. All rights reserved.</div>
+</body>
+</html>

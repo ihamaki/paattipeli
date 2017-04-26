@@ -16,4 +16,5 @@ Päivä | Tunnit | Kuvaus | Muita huomioita
 14.4.2017 | 1.5h | Jatkettu käyttöliittymän ja klikkauskuuntelijan toteutusta, pelilauta osaa reagoida oikein, jos klikattu ruutu sisältää laivan
 18.4.2017 | 1.5h | Muokattu peliä siten, että vain pelattavana olevan laudan ruutujen klikkauksiin reagoidaan
 20.4.2017 | 5h | Lisätty käyttöliittymään tekstikenttiä pelilautojen lisäksi, lisätty klikkauskuuntelijalle tarkistus pelin mahdollisesta päättymisestä, tehty pikkumuutoksia logiikkaan, lisätty logiikkaan metodi yksittäisen laivan lisäykselle, piirretty uusi luokkakaavio, piirretty sekvenssikaaviot | Pelin/laudan testit tarvitsee omat metodit laivojen ampumista varten, jotta testeissä on järkeä.
-
+25.4.2017 | 4h | Lisätty JavaDoc checkstyleen, jätetty käyttöliittymä pit-raportoinnin ulkopuolelle, lisätty ja korjattu testejä
+26.4.2017 | 6h | Käyttöliittymään lisätty laivojen asettaminen pelilaudalle - peliä voi nyt periaatteessa pelata käyttöliittymän kautta | Peli ei vielä noudattele laivanupotuksen kaikkia sääntöjä, sillä laivan voi lisätä toisen laivan viereen, vaikka toisen laivan päälle lisääminen onkin estetty.

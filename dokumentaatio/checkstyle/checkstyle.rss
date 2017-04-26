@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 8,
+      <title>File: 9,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -75,6 +75,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#paatti.logiikka.Peli.java">paatti/logiikka/Peli.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#paatti.main.Main.java">paatti/main/Main.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#paatti.laivanupotus.Main.java">paatti/laivanupotus/Main.java</a>
+                  <a href="${project.url}/checkstyle.html#paatti.kayttoliittyma.LaivojenKuuntelija.java">paatti/kayttoliittyma/LaivojenKuuntelija.java</a>
                 </td>
                 <td>
                   0

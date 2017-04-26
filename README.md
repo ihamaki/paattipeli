@@ -6,6 +6,6 @@ Tämä on Java-ohjelmoinnin harjoitustyönä luotu toteutus klassiselle laivanup
 
 [Tuntikirjanpito](/dokumentaatio/tuntikirjanpinto.md)
 
-[Pit-raportti](https://htmlpreview.github.io/?https://github.com/ihamaki/paattipeli/blob/master/dokumentaatio/pit/201704202246/index.html)
+[Pit-raportti](https://htmlpreview.github.io/?https://github.com/ihamaki/paattipeli/blob/master/dokumentaatio/pit/index.html)
 
 [Checkstyle-raportti](https://htmlpreview.github.io/?https://github.com/ihamaki/paattipeli/blob/master/dokumentaatio/checkstyle/checkstyle.html)

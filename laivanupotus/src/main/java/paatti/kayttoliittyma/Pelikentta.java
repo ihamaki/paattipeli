@@ -47,7 +47,7 @@ public class Pelikentta extends JPanel {
                 if (ruutu.getAmmuttu()) {
                     if (ruutu.getLaiva() != null && ruutu.getAmmuttu()) {
                         painike.setEnabled(false);
-                        painike.setBackground(Color.RED);
+                        painike.setBackground(Color.DARK_GRAY);
                     } else {
                         painike.setEnabled(false);
                         painike.setBackground(null);
@@ -67,7 +67,7 @@ public class Pelikentta extends JPanel {
                 JButton painike = painikkeet[i][j];
                 if (ruutu.getLaiva() != null) {
                     painike.setEnabled(false);
-                    painike.setBackground(Color.RED);
+                    painike.setBackground(Color.DARK_GRAY);
                 } else {
                     painike.setEnabled(true);
                 }

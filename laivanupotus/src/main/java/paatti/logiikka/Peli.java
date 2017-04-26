@@ -47,7 +47,16 @@ public class Peli {
 //        lauta2.lisaaLaiva(3, 1, 5, 2);
 //        lauta2.lisaaLaiva(3, -1, 7, 3);
 //    }
-    
+    /**
+     * Lisää parametrina annetulle laudalle parametrien mukaisen laivan.
+     *
+     * @param lauta Lauta, jolle laiva rakennetaan
+     * @param koko Laivan koko
+     * @param suunta Laivan suunta, 1 jos vaaka, -1 jos pysty
+     * @param x Laivan ensimmäisen ruudun x-koordinaatti
+     * @param y Laivan ensimmäisen ruudun y-koordinaatti
+     * @return true jos laivan lisäys onnistui, false muuten
+     */
     public boolean lisaaLaiva(Lauta lauta, int koko, int suunta, int x, int y) {
         if (lauta.lisaaLaiva(koko, suunta, x, y)) {
             return true;
