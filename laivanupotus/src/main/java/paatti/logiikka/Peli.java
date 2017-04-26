@@ -22,7 +22,7 @@ public class Peli {
     public Peli(int koko) {
         this.lauta1 = new Lauta(koko);
         this.lauta2 = new Lauta(koko);
-        this.pelattava = 2;
+        this.pelattava = 1;
         this.peliPaattynyt = false;
     }
 
@@ -39,13 +39,20 @@ public class Peli {
     }
 
     // apumetodi
-    public void pelaa() {
-        lauta1.lisaaLaiva(4, 1, 0, 0);
-        lauta1.lisaaLaiva(3, -1, 3, 1);
-        lauta1.lisaaLaiva(3, 1, 2, 7);
-        lauta2.lisaaLaiva(4, -1, 2, 7);
-        lauta2.lisaaLaiva(3, 1, 5, 2);
-        lauta2.lisaaLaiva(3, -1, 7, 3);
+//    public void pelaa() {
+//        lauta1.lisaaLaiva(4, 1, 0, 0);
+//        lauta1.lisaaLaiva(3, -1, 3, 1);
+//        lauta1.lisaaLaiva(3, 1, 2, 7);
+//        lauta2.lisaaLaiva(4, -1, 2, 7);
+//        lauta2.lisaaLaiva(3, 1, 5, 2);
+//        lauta2.lisaaLaiva(3, -1, 7, 3);
+//    }
+    
+    public boolean lisaaLaiva(Lauta lauta, int koko, int suunta, int x, int y) {
+        if (lauta.lisaaLaiva(koko, suunta, x, y)) {
+            return true;
+        }
+        return false;
     }
 
     /**

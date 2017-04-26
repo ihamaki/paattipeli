@@ -36,11 +36,10 @@ public class Pelikentta extends JPanel {
     /**
      * Metodi päivittää pelilaudan tilanteen.
      *
-     * @param paivitettyLauta Päivitetty lauta, jonka perusteella graafinen
+     * @param lauta Päivitetty lauta, jonka perusteella graafinen
      * lautanäkymä luodaan
      */
-    public void paivita(Lauta paivitettyLauta) {
-        Lauta lauta = paivitettyLauta;
+    public void paivita(Lauta lauta) {
         for (int i = 0; i < lauta.getKoko(); i++) {
             for (int j = 0; j < lauta.getKoko(); j++) {
                 Ruutu ruutu = lauta.getRuudut()[i][j];
@@ -51,10 +50,36 @@ public class Pelikentta extends JPanel {
                         painike.setBackground(Color.RED);
                     } else {
                         painike.setEnabled(false);
+                        painike.setBackground(null);
                     }
                 } else {
                     painike.setEnabled(true);
+                    painike.setBackground(null);
                 }
+            }
+        }
+    }
+
+    public void naytaLaivat(Lauta lauta) {
+        for (int i = 0; i < lauta.getKoko(); i++) {
+            for (int j = 0; j < lauta.getKoko(); j++) {
+                Ruutu ruutu = lauta.getRuudut()[i][j];
+                JButton painike = painikkeet[i][j];
+                if (ruutu.getLaiva() != null) {
+                    painike.setEnabled(false);
+                    painike.setBackground(Color.RED);
+                } else {
+                    painike.setEnabled(true);
+                }
+            }
+        }
+    }
+
+    public void piilotaKaikki(Lauta lauta) {
+        for (int i = 0; i < lauta.getKoko(); i++) {
+            for (int j = 0; j < lauta.getKoko(); j++) {
+                painikkeet[i][j].setBackground(null);
+                painikkeet[i][j].setEnabled(false);
             }
         }
     }

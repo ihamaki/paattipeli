@@ -114,6 +114,10 @@ public class Lauta {
         }
         return true;
     }
+    
+    public boolean onkoKaikkiLaivatLisatty() {
+        return laivat.size() == 5;
+    }
 
     /**
      * Metodi tarkistaa pelilaudan laivojen statuksen.

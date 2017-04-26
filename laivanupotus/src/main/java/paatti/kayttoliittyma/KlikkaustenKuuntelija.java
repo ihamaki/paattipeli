@@ -23,9 +23,9 @@ public class KlikkaustenKuuntelija implements ActionListener {
     private Pelikentta pelaaja2;
     private JLabel pelinTila;
 
-    public KlikkaustenKuuntelija(Peli peli, JButton[][] painikkeet1,
+    public KlikkaustenKuuntelija(Kayttoliittyma kayttoliittyma, Peli peli, JButton[][] painikkeet1,
             JButton[][] painikkeet2, Pelikentta pelaaja1, Pelikentta pelaaja2, JLabel pelinTila) {
-        this.kayttoliittyma = null;
+        this.kayttoliittyma = kayttoliittyma;
         this.peli = peli;
         this.lauta1 = peli.getLauta1();
         this.lauta2 = peli.getLauta2();
