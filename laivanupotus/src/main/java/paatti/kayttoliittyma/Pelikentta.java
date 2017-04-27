@@ -36,8 +36,8 @@ public class Pelikentta extends JPanel {
     /**
      * Metodi päivittää pelilaudan tilanteen.
      *
-     * @param lauta Päivitetty lauta, jonka perusteella graafinen
-     * lautanäkymä luodaan
+     * @param lauta Päivitetty lauta, jonka perusteella graafinen lautanäkymä
+     * luodaan
      */
     public void paivita(Lauta lauta) {
         for (int i = 0; i < lauta.getKoko(); i++) {

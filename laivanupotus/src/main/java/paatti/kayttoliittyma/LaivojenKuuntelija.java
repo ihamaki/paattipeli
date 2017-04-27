@@ -82,7 +82,6 @@ public class LaivojenKuuntelija implements ActionListener {
                 }
             } else if (peli.getPelattava() == 2) {
                 if (kayttoliittyma.getPeli().getLauta2().onkoKaikkiLaivatLisatty()) {
-                    kayttoliittyma.getPeli().vaihdaPelattava();
                     kayttoliittyma.vaihdaTila();
                     kayttoliittyma.run();
                 } else {
