@@ -30,17 +30,17 @@ public class LautaTest {
     public void ruutujenAlustusToimii() {
         for (int i = 0; i < lauta.getKoko(); i++) {
             for (int j = 0; j < lauta.getKoko(); j++) {
-                assertFalse(lauta.getRuudut()[i][j].getAmmuttu());
-                assertFalse(lauta.getRuudut()[i][j].getTuhoutunut());
-                assertNull(lauta.getRuudut()[i][j].getLaiva());
+                assertEquals(false, lauta.getRuudut()[i][j].getAmmuttu());
+                assertEquals(false, lauta.getRuudut()[i][j].getTuhoutunut());
+                assertEquals(null, lauta.getRuudut()[i][j].getLaiva());
             }
         }
     }
 
     @Test
-    public void lisaaLaivaToimii() {
-        lauta.lisaaLaiva(2, 1, 1, 2);
-        lauta.lisaaLaiva(3, -1, 4, 0);
+    public void lisaaLaivaToimiiKunLaivanOnKelvollinen() {
+        assertEquals(true, lauta.lisaaLaiva(2, 1, 1, 2));
+        assertEquals(true, lauta.lisaaLaiva(3, -1, 4, 0));
         assertEquals(new Laiva(2), lauta.getLaivat().get(0));
         assertEquals(new Laiva(2), lauta.getRuudut()[1][2].getLaiva());
         assertEquals(new Laiva(2), lauta.getRuudut()[1][3].getLaiva());
@@ -51,11 +51,16 @@ public class LautaTest {
     }
 
     @Test
+    public void laivaaEiLisataKunLaivaEiKelvollinen() {
+        assertEquals(false, lauta.lisaaLaiva(5, 1, 0, 9));
+    }
+
+    @Test
     public void laivaEiKelpaaKunJatkuuLaudanUlkopuolelle() {
         assertEquals(false, lauta.tarkistaLaivanKelpoisuus(2, 1, 10, 0));
         lauta.lisaaLaiva(2, 1, 10, 0);
         assertEquals(true, lauta.getLaivat().isEmpty());
-        assertEquals(false, lauta.tarkistaLaivanKelpoisuus(4, 1, 0, 8));
+        assertEquals(false, lauta.tarkistaLaivanKelpoisuus(4, -1, 8, 0));
         lauta.lisaaLaiva(4, 1, 0, 8);
         assertEquals(true, lauta.getLaivat().isEmpty());
     }
@@ -67,6 +72,17 @@ public class LautaTest {
         assertEquals(false, lauta.tarkistaLaivanKelpoisuus(2, -1, 1, 3));
         lauta.lisaaLaiva(2, -1, 1, 3);
         assertEquals(1, lauta.getLaivat().size());
+    }
+
+    @Test
+    public void onkoKaikkiLaivatLisattyTarkistusToimii() {
+        assertEquals(false, lauta.onkoKaikkiLaivatLisatty());
+        lauta.lisaaLaiva(2, 1, 0, 0);
+        lauta.lisaaLaiva(2, 1, 1, 0);
+        lauta.lisaaLaiva(2, 1, 2, 0);
+        lauta.lisaaLaiva(2, 1, 3, 0);
+        lauta.lisaaLaiva(2, 1, 4, 0);
+        assertEquals(true, lauta.onkoKaikkiLaivatLisatty());
     }
 
     @Test

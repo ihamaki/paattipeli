@@ -5,8 +5,8 @@ import java.util.List;
 
 /**
  * Lauta pitää sisällään kaksiulotteisen taulukon pelilaudan ruuduista, sekä
- * listana tiedon laudalle lisätyistä laivoista. Lauta tarjoaa metodit laivojen
- * lisäämiseen pelilaudalle, sekä metodit peli- tilanteen muuttamiseen ja
+ * listana tiedon laudalle lisätyistä laivoista. Lauta tarjoaa metodin laivojen
+ * lisäämiseen pelilaudalle, sekä metodit pelitilanteen muuttamiseen ja
  * päivittämiseen.
  */
 public class Lauta {
@@ -92,7 +92,7 @@ public class Lauta {
 
     /**
      * Metodi tarkistaa, voiko laudalle lisätä laivan parametrien ehdoilla.
-     * Laivaa ei voi lisätä toisen laivan päälle.
+     * Laivaa ei voi lisätä toisen laivan päälle, eikä pelilaudan ulkopuolelle.
      *
      * @param laivanKoko Laivan koko
      * @param suunta Laivan suunta, 1 jos vaaka, -1 jos pysty

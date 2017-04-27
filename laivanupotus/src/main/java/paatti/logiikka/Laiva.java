@@ -27,8 +27,8 @@ public class Laiva {
     }
 
     /**
-     * Vähentää laivan ehjien osien määrä yhdellä, ja mikäli ehjien osien määrä
-     * on 0, merkitsee laivan tuhoutuneeksi.
+     * Metodi vähentää laivan ehjien osien määrä yhdellä, ja mikäli ehjien osien
+     * määrä on 0, merkitsee laivan tuhoutuneeksi.
      */
     public void ammu() {
         ehjatOsat--;

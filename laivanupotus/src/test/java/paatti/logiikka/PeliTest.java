@@ -1,6 +1,5 @@
 package paatti.logiikka;
 
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,7 @@ public class PeliTest {
     
     @Before
     public void setUp() {
-        this.peli = new Peli(5);
+        this.peli = new Peli(10);
     }
     
     @After
@@ -22,11 +21,23 @@ public class PeliTest {
     
     @Test
     public void konstruktoriToimii() {
-        Lauta lauta1 = new Lauta(5);
-        Lauta lauta2 = new Lauta(5);
+        Lauta lauta1 = new Lauta(10);
+        Lauta lauta2 = new Lauta(10);
         assertEquals(lauta1, peli.getLauta1());
         assertEquals(lauta2, peli.getLauta2());
         assertEquals(1, peli.getPelattava());
+    }
+    
+    @Test
+    public void laivanLisaysToimiiKunLaivaKelvollinen() {
+        assertEquals(true, peli.lisaaLaiva(peli.getLauta1(), 2, 1, 1, 2));
+        assertEquals(true, peli.lisaaLaiva(peli.getLauta1(), 4, -1, 5, 5));
+    }
+    
+    @Test
+    public void laivaaEiLisataPeliLaudalleKunLaivaEiKelvollinen() {
+        assertEquals(false, peli.lisaaLaiva(peli.getLauta1(), 2, 1, 0, 9));
+        assertEquals(false, peli.lisaaLaiva(peli.getLauta1(), 4, -1, 7, 0));
     }
     
     @Test
@@ -97,6 +108,8 @@ public class PeliTest {
     public void pelattavanLaudanVaihtoToimii() {
         peli.vaihdaPelattava();
         assertEquals(2, peli.getPelattava());
+        peli.vaihdaPelattava();
+        assertEquals(1, peli.getPelattava());
     }
     
     public void lisaaLaivat(Lauta lauta) {

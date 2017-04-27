@@ -15,7 +15,7 @@ public class Peli {
     private boolean peliPaattynyt;
 
     /**
-     * Pelin konstruktori.
+     * Pelin konstruktori. Laudat alustetaan pelille annetun koon mukaan.
      *
      * @param koko Pelilaudan sivun pituus
      */
@@ -38,17 +38,8 @@ public class Peli {
         return pelattava;
     }
 
-    // apumetodi
-//    public void pelaa() {
-//        lauta1.lisaaLaiva(4, 1, 0, 0);
-//        lauta1.lisaaLaiva(3, -1, 3, 1);
-//        lauta1.lisaaLaiva(3, 1, 2, 7);
-//        lauta2.lisaaLaiva(4, -1, 2, 7);
-//        lauta2.lisaaLaiva(3, 1, 5, 2);
-//        lauta2.lisaaLaiva(3, -1, 7, 3);
-//    }
     /**
-     * Lisää parametrina annetulle laudalle parametrien mukaisen laivan.
+     * Metodi lisää parametrina annetulle laudalle parametrien mukaisen laivan.
      *
      * @param lauta Lauta, jolle laiva rakennetaan
      * @param koko Laivan koko

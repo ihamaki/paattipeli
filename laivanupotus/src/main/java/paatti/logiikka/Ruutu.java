@@ -14,10 +14,12 @@ public class Ruutu {
     private Laiva laiva;
 
     /**
-     * Ruudun konstruktori.
+     * Ruudun konstruktori. Kun ruutu alustetaan, asetetaan false ammuttu- ja
+     * tuhoutunut muuttujiin. Mahdollinen laiva liitetään ruutuun jälkikäteen,
+     * joten se alustetaan null-arvolla.
      *
-     * @param x ruudun x-koordinaatti
-     * @param y ruudun y-koordinaatti
+     * @param x Ruudun x-koordinaatti
+     * @param y Ruudun y-koordinaatti
      */
     public Ruutu(int x, int y) {
         this.x = x;
