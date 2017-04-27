@@ -4,6 +4,8 @@ Tämä on Java-ohjelmoinnin harjoitustyönä luotu toteutus klassiselle laivanup
 ## Dokumentaatio
 [Aiheen kuvaus](/dokumentaatio/aiheenKuvausJaRakenne.md)
 
+[Pelin käyttöohje](/dokumentaatio/kayttoohjeet.md)
+
 [Tuntikirjanpito](/dokumentaatio/tuntikirjanpinto.md)
 
 [Pit-raportti](https://htmlpreview.github.io/?https://github.com/ihamaki/paattipeli/blob/master/dokumentaatio/pit/index.html)
