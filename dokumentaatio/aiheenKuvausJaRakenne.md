@@ -1,12 +1,11 @@
 ## Paattipeli
 
-**Aihe:** Projektin aiheena on laivanupotus-peli. Pelissä luodaan kullekin pelaajalle ruudukollinen pelilauta, jonne pelaajat sijoittavat laivansa (5 kpl). Tämän jälkeen pelaajat yrittävät löytää vastustajan laivat valitsemalla yksittäisiä ruutuja vastustajan laudalta. Peli ilmoittaa pelaajalle mahdollisesta osumasta/ohilaukauksesta muuttamalla klikatun ruudun väriä. Peli etenee vuorotellen pelaajien välillä. Peli päättyy, jos toinen pelaajista upottaa kaikki vastustajan laivat. Tarkoituksena on aluksi toteuttaa perinteinen vuoropohjainen peli kahdelle pelaajalle. Tämän lisäksi ideana on luoda yksinkertainen tekoäly, jota vastaan yksittäinen pelaaja voi pelata.
+**Aihe:** Projektin aiheena on laivanupotus-peli. Pelissä luodaan kullekin pelaajalle ruudukollinen pelilauta, jonne pelaajat sijoittavat laivansa. Tämän jälkeen pelaajat yrittävät löytää vastustajan laivat valitsemalla yksittäisiä ruutuja vastustajan laudalta. Peli ilmoittaa pelaajalle mahdollisesta osumasta/ohilaukauksesta muuttamalla klikatun ruudun väriä. Peli etenee vuorotellen pelaajien välillä. Peli päättyy, jos toinen pelaajista upottaa kaikki vastustajan laivat.
 
-**Käyttäjät:** 1-2 pelaajaa
+**Käyttäjät:** 2 pelaajaa
 
 **Käyttäjien toiminnot:** 
 - aloita peli
-- valitse pelityyppi (kaksinpeli/tietokonetta vastaan)
 - sijoita laivat omalle pelilaudalle
 - etsi laivoja vastustajan pelilaudalta ruutuja klikkaamalla
 - pelin päätyttyä sulje peli/aloita uusi peli
@@ -19,7 +18,7 @@ Pelilaudan kooksi on kaaviossa oletettu 10x10 ja laivojen määräksi 5.
 
 **Rakennekuvaus**
 
-Pelin logiikka löytyy luokista Peli, Lauta, Laiva ja Ruutu. 
+Pelin logiikka löytyy luokista Peli, Lauta, Laiva ja Ruutu. Peli pitää sisällään kaksi lautaa, jotka taas pitävät sisällään kaksiulotteisen taulukon ruuduista, sekä listan pelilautaan liittyvistä laivoista. Laiva pitää sisällään ainoastaan tiedon ehjistä osistaan, ja siitä, onko se tuhoutunut. Ruutu sisältää tiedon siitä, onko sitä ammuttu ja tiedon mahdollisesta siihen liitetystä laivasta (ruutuun voi liittyä vain yksi laiva). Lauta-luokan metodien avulla laudalle lisätään laivat sekä ammutaan ruutuja. Laivojen lisäyksen yhteydessä luodaan uusi laiva, joka liitetään sen koon mukaan useampiin ruutuihin, ja lisätään laudan laivoja muistissa pitäävään listaan. Listan avulla lauta voi tarkistaa, onko kaikki lautaan liitetyt laivat tuhottu vai ei. Peli-luokan kautta päästään käsiksi kumpaankin pelattavana olevaan lautaan. Peli sisältää myös metodit pelitilanteen tarkistamiseen, eli onko toinen pelaajista hävinnyt ja onko peli päättynyt. 
 
 **Sekvenssikaaviot**
 
