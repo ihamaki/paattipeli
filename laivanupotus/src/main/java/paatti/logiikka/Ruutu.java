@@ -10,7 +10,7 @@ public class Ruutu {
     private int x;
     private int y;
     private boolean ammuttu;
-    private boolean tuhoutunut;
+    private boolean estetty;
     private Laiva laiva;
 
     /**
@@ -24,7 +24,7 @@ public class Ruutu {
     public Ruutu(int x, int y) {
         this.x = x;
         this.y = y;
-        this.tuhoutunut = false;
+        this.estetty = false;
         this.ammuttu = false;
         this.laiva = null;
     }
@@ -37,12 +37,12 @@ public class Ruutu {
         return y;
     }
 
-    public boolean getTuhoutunut() {
-        return tuhoutunut;
+    public boolean getEstetty() {
+        return estetty;
     }
 
-    public void setTuhoutunut(boolean tuhoutunut) {
-        this.tuhoutunut = tuhoutunut;
+    public void setEstetty(boolean estetty) {
+        this.estetty = estetty;
     }
 
     public boolean getAmmuttu() {
@@ -78,7 +78,7 @@ public class Ruutu {
 
         return this.getX() == verrattava.getX() && this.getY() == verrattava.getY()
                 && this.getAmmuttu() == verrattava.getAmmuttu()
-                && this.getTuhoutunut() == verrattava.getTuhoutunut()
+                && this.getEstetty()== verrattava.getEstetty()
                 && this.getLaiva() == verrattava.getLaiva();
     }
 }

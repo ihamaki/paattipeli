@@ -31,16 +31,35 @@ public class LautaTest {
         for (int i = 0; i < lauta.getKoko(); i++) {
             for (int j = 0; j < lauta.getKoko(); j++) {
                 assertEquals(false, lauta.getRuudut()[i][j].getAmmuttu());
-                assertEquals(false, lauta.getRuudut()[i][j].getTuhoutunut());
+                assertEquals(false, lauta.getRuudut()[i][j].getEstetty());
                 assertEquals(null, lauta.getRuudut()[i][j].getLaiva());
             }
         }
+    }
+    
+    @Test
+    public void lisaaLaivaMerkkaaViereisetRuudutEstetyiksi() {
+        lauta.lisaaLaiva(2, 1, 1, 2);
+        assertEquals(true, lauta.getRuudut()[0][2].getEstetty());
+        assertEquals(true, lauta.getRuudut()[2][2].getEstetty());
+        assertEquals(true, lauta.getRuudut()[0][3].getEstetty());
+        assertEquals(true, lauta.getRuudut()[2][3].getEstetty());
+        assertEquals(true, lauta.getRuudut()[1][1].getEstetty());
+        assertEquals(true, lauta.getRuudut()[1][4].getEstetty());
+        lauta.lisaaLaiva(2, -1, 5, 5);
+        assertEquals(true, lauta.getRuudut()[5][4].getEstetty());
+        assertEquals(true, lauta.getRuudut()[5][6].getEstetty());
+        assertEquals(true, lauta.getRuudut()[6][4].getEstetty());
+        assertEquals(true, lauta.getRuudut()[6][6].getEstetty());
+        assertEquals(true, lauta.getRuudut()[4][5].getEstetty());
+        assertEquals(true, lauta.getRuudut()[7][5].getEstetty());
     }
 
     @Test
     public void lisaaLaivaToimiiKunLaivanOnKelvollinen() {
         assertEquals(true, lauta.lisaaLaiva(2, 1, 1, 2));
         assertEquals(true, lauta.lisaaLaiva(3, -1, 4, 0));
+        assertEquals(true, lauta.lisaaLaiva(2, 0, 9, 8));
         assertEquals(new Laiva(2), lauta.getLaivat().get(0));
         assertEquals(new Laiva(2), lauta.getRuudut()[1][2].getLaiva());
         assertEquals(new Laiva(2), lauta.getRuudut()[1][3].getLaiva());
@@ -48,6 +67,8 @@ public class LautaTest {
         assertEquals(new Laiva(3), lauta.getRuudut()[4][0].getLaiva());
         assertEquals(new Laiva(3), lauta.getRuudut()[5][0].getLaiva());
         assertEquals(new Laiva(3), lauta.getRuudut()[6][0].getLaiva());
+        assertEquals(new Laiva(2), lauta.getRuudut()[9][8].getLaiva());
+        assertEquals(new Laiva(2), lauta.getRuudut()[9][9].getLaiva());
     }
 
     @Test
@@ -75,22 +96,42 @@ public class LautaTest {
     }
 
     @Test
+    public void laivaEiKelpaaKunLiianLahellaToistaLaivaa() {
+        assertEquals(true, lauta.tarkistaLaivanKelpoisuus(2, 1, 1, 2));
+        lauta.lisaaLaiva(2, 1, 1, 2);
+        assertEquals(false, lauta.tarkistaLaivanKelpoisuus(4, -1, 0, 4));
+        lauta.lisaaLaiva(4, -1, 0, 4);
+        assertEquals(1, lauta.getLaivat().size());
+    }
+
+    @Test
+    public void ruudunMerkitseminenEstetyksiToimii() {
+        lauta.merkitseEstettyRuutu(-1, 0);
+        lauta.merkitseEstettyRuutu(10, 0);
+        lauta.merkitseEstettyRuutu(0, -1);
+        lauta.merkitseEstettyRuutu(0, 10);
+        lauta.merkitseEstettyRuutu(1, 2);
+        assertEquals(true, lauta.getRuudut()[1][2].getEstetty());
+    }
+
+    @Test
     public void onkoKaikkiLaivatLisattyTarkistusToimii() {
         assertEquals(false, lauta.onkoKaikkiLaivatLisatty());
         lauta.lisaaLaiva(2, 1, 0, 0);
-        lauta.lisaaLaiva(2, 1, 1, 0);
         lauta.lisaaLaiva(2, 1, 2, 0);
-        lauta.lisaaLaiva(2, 1, 3, 0);
         lauta.lisaaLaiva(2, 1, 4, 0);
+        lauta.lisaaLaiva(2, 1, 6, 0);
+        lauta.lisaaLaiva(2, 1, 8, 0);
         assertEquals(true, lauta.onkoKaikkiLaivatLisatty());
     }
-
+    
     @Test
     public void ammuToimiiKunRuutuLaudalla() {
         lauta.lisaaLaiva(2, 1, 1, 2);
         lauta.ammu(1, 2);
+        lauta.ammu(0, 0);
         assertEquals(true, lauta.getRuudut()[1][2].getAmmuttu());
-        assertEquals(true, lauta.getRuudut()[1][2].getTuhoutunut());
+        assertEquals(true, lauta.getRuudut()[0][0].getAmmuttu());
         assertEquals(1, lauta.getLaivat().get(0).getEhjatOsat());
         assertEquals(false, lauta.getLaivat().get(0).getTuhoutunut());
     }
@@ -98,9 +139,11 @@ public class LautaTest {
     @Test
     public void ammuToimiiOikeinKunRuutuEiLaudalla() {
         lauta.lisaaLaiva(2, 1, 1, 2);
-        lauta.ammu(-2, 2);
+        lauta.ammu(-2, 0);
+        lauta.ammu(10, 0);
+        lauta.ammu(0, -2);
+        lauta.ammu(0, 10);
         assertEquals(false, lauta.getRuudut()[1][2].getAmmuttu());
-        assertEquals(false, lauta.getRuudut()[1][2].getTuhoutunut());
         assertEquals(2, lauta.getLaivat().get(0).getEhjatOsat());
         assertEquals(false, lauta.getLaivat().get(0).getTuhoutunut());
     }

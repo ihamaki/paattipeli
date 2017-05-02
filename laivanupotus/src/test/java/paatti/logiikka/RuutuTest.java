@@ -22,9 +22,9 @@ public class RuutuTest {
     public void konstruktoriToimii() {
         assertEquals(1, ruutu.getX());
         assertEquals(2, ruutu.getY());
-        assertFalse(ruutu.getAmmuttu());
-        assertFalse(ruutu.getTuhoutunut());
-        assertNull(ruutu.getLaiva());
+        assertEquals(false, ruutu.getAmmuttu());
+        assertEquals(false, ruutu.getEstetty());
+        assertEquals(null, ruutu.getLaiva());
     }
 
     @Test

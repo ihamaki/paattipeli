@@ -76,6 +76,7 @@ public class LaivojenKuuntelija implements ActionListener {
                 if (kayttoliittyma.getPeli().getLauta1().onkoKaikkiLaivatLisatty()) {
                     kayttoliittyma.getPeli().vaihdaPelattava();
                     kayttoliittyma.valitseNaytettavaLauta();
+                    suunta = 1;
                     ohje.setText("Pelaaja " + peli.getPelattava() + ": Aseta laivat laudalle");
                 } else {
                     ohje.setText("Kaikki laivat tulee sijoittaa pelilaudalle");
