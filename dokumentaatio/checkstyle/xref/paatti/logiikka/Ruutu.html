@@ -18,7 +18,7 @@
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> x;
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> y;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> ammuttu;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> tuhoutunut;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> estetty;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>      <strong class="jxr_keyword">private</strong> <a href="../../paatti/logiikka/Laiva.html">Laiva</a> laiva;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>      <em class="jxr_javadoccomment">/**</em>
@@ -32,7 +32,7 @@
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">public</strong> <a href="../../paatti/logiikka/Ruutu.html">Ruutu</a>(<strong class="jxr_keyword">int</strong> x, <strong class="jxr_keyword">int</strong> y) {
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>          <strong class="jxr_keyword">this</strong>.x = x;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>          <strong class="jxr_keyword">this</strong>.y = y;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>          <strong class="jxr_keyword">this</strong>.tuhoutunut = false;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          <strong class="jxr_keyword">this</strong>.estetty = false;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>          <strong class="jxr_keyword">this</strong>.ammuttu = false;
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">this</strong>.laiva = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      }
@@ -45,12 +45,12 @@
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>          <strong class="jxr_keyword">return</strong> y;
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>      }
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> getTuhoutunut() {
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>          <strong class="jxr_keyword">return</strong> tuhoutunut;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> getEstetty() {
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          <strong class="jxr_keyword">return</strong> estetty;
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>      }
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTuhoutunut(<strong class="jxr_keyword">boolean</strong> tuhoutunut) {
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">this</strong>.tuhoutunut = tuhoutunut;
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setEstetty(<strong class="jxr_keyword">boolean</strong> estetty) {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">this</strong>.estetty = estetty;
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      }
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> getAmmuttu() {
@@ -83,13 +83,12 @@
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>              <strong class="jxr_keyword">return</strong> false;
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>          }
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>          <a href="../../paatti/logiikka/Ruutu.html">Ruutu</a> verrattava = (Ruutu) o;
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.getX() == verrattava.getX() &amp;&amp; <strong class="jxr_keyword">this</strong>.getY() == verrattava.getY()
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.getAmmuttu() == verrattava.getAmmuttu()
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.getTuhoutunut() == verrattava.getTuhoutunut()
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.getLaiva() == verrattava.getLaiva();
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>      }
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  }
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.getX() == verrattava.getX() &amp;&amp; <strong class="jxr_keyword">this</strong>.getY() == verrattava.getY()
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.getAmmuttu() == verrattava.getAmmuttu()
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.getEstetty() == verrattava.getEstetty()
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.getLaiva() == verrattava.getLaiva();
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      }
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2017. All rights reserved.</div>

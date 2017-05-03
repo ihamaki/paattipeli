@@ -1,5 +1,6 @@
 package paatti.kayttoliittyma;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -83,8 +84,7 @@ public class LaivojenKuuntelija implements ActionListener {
                 }
             } else if (peli.getPelattava() == 2) {
                 if (kayttoliittyma.getPeli().getLauta2().onkoKaikkiLaivatLisatty()) {
-                    kayttoliittyma.vaihdaTila();
-                    kayttoliittyma.run();
+                    kayttoliittyma.vaihdaNakyma();
                 } else {
                     ohje.setText("Kaikki laivat tulee sijoittaa pelilaudalle");
                 }
@@ -104,11 +104,14 @@ public class LaivojenKuuntelija implements ActionListener {
                             koko = 0;
                             pelaaja.naytaLaivat(lauta);
                             ohje.setText("Pelaaja " + peli.getPelattava() + ": Aseta laivat laudalle");
+                            ohje.setForeground(Color.BLACK);
                         } else {
-                            ohje.setText("Laivaa ei voi sijoittaa toisen laivan päälle tai pelilaudan ulkopuolelle");
+                            ohje.setText("Laivaa ei voi sijoittaa liian lähelle toista laivaa tai pelilaudan ulkopuolelle");
+                            ohje.setForeground(Color.RED);
                         }
                     } else {
-                        ohje.setText("Valitse laudalle sijoitettavan laivan koko");
+                        ohje.setText("Valitse ensin laudalle sijoitettavan laivan koko");
+                        ohje.setForeground(Color.RED);
                     }
                 }
             }

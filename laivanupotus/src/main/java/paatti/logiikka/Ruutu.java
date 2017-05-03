@@ -75,10 +75,9 @@ public class Ruutu {
             return false;
         }
         Ruutu verrattava = (Ruutu) o;
-
         return this.getX() == verrattava.getX() && this.getY() == verrattava.getY()
                 && this.getAmmuttu() == verrattava.getAmmuttu()
-                && this.getEstetty()== verrattava.getEstetty()
+                && this.getEstetty() == verrattava.getEstetty()
                 && this.getLaiva() == verrattava.getLaiva();
     }
 }

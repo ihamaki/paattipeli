@@ -15,9 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import paatti.logiikka.Peli;
 
-/**
- * Luokka luo pelille graafisen käyttöliittymän.
- */
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
@@ -31,13 +28,6 @@ public class Kayttoliittyma implements Runnable {
     private ArrayList<JButton> napit2;
     private JLabel ohje;
 
-    private enum TILA {
-        ALKU,
-        PELI
-    };
-
-    private TILA tila;
-
     public Kayttoliittyma(int koko) {
         this.koko = koko;
         this.peli = new Peli(koko);
@@ -47,7 +37,6 @@ public class Kayttoliittyma implements Runnable {
         alustaPainikkeet(painikkeet2);
         pelaaja1 = new Pelikentta(peli, painikkeet1);
         pelaaja2 = new Pelikentta(peli, painikkeet2);
-        tila = TILA.ALKU;
     }
 
     @Override
@@ -56,33 +45,20 @@ public class Kayttoliittyma implements Runnable {
         frame.setPreferredSize(new Dimension(1000, 500));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        if (tila == TILA.PELI) {
-            luoPelinKomponentit(frame.getContentPane());
-            KlikkaustenKuuntelija k = new KlikkaustenKuuntelija(this, peli, painikkeet1,
-                    painikkeet2, pelaaja1, pelaaja2, ohje);
-            lisaaPainikkeilleKuuntelija(k, painikkeet1);
-            lisaaPainikkeilleKuuntelija(k, painikkeet2);
-        } else if (tila == TILA.ALKU) {
-            luoAlkunakymanKomponentit(frame.getContentPane());
-            valitseNaytettavaLauta();
-            LaivojenKuuntelija l = new LaivojenKuuntelija(this, peli, painikkeet1,
-                    painikkeet2, pelaaja1, pelaaja2, napit1, napit2, ohje);
-            lisaaPainikkeilleKuuntelija(l, painikkeet1);
-            lisaaPainikkeilleKuuntelija(l, painikkeet2);
-            lisaaNapeilleKuuntelija(l, napit1);
-            lisaaNapeilleKuuntelija(l, napit2);
-        }
-
+        luoAlkunakymanKomponentit(frame.getContentPane());
+        valitseNaytettavaLauta();
+        LaivojenKuuntelija l = new LaivojenKuuntelija(this, peli, painikkeet1,
+                painikkeet2, pelaaja1, pelaaja2, napit1, napit2, ohje);
+        lisaaPainikkeilleKuuntelija(l, painikkeet1);
+        lisaaPainikkeilleKuuntelija(l, painikkeet2);
+        lisaaNapeilleKuuntelija(l, napit1);
+        lisaaNapeilleKuuntelija(l, napit2);
+        
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
     }
 
-    /**
-     * Metodi luo käyttöliittymän eri komponentit.
-     *
-     * @param container
-     */
     private void luoPelinKomponentit(Container container) {
         container.setLayout(new BorderLayout());
         JPanel pelaajat = new JPanel(new GridLayout());
@@ -170,12 +146,16 @@ public class Kayttoliittyma implements Runnable {
         return peli;
     }
 
-    public void vaihdaTila() {
-        if (tila == TILA.ALKU) {
-            tila = TILA.PELI;
-        } else if (tila == TILA.PELI) {
-            tila = TILA.ALKU;
-        }
+    public void vaihdaNakyma() {
+        frame.getContentPane().removeAll();
+        luoPelinKomponentit(frame.getContentPane());
+        KlikkaustenKuuntelija k = new KlikkaustenKuuntelija(this, peli, painikkeet1,
+                painikkeet2, pelaaja1, pelaaja2, ohje);
+        lisaaPainikkeilleKuuntelija(k, painikkeet1);
+        lisaaPainikkeilleKuuntelija(k, painikkeet2);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setResizable(false);
     }
 
     public void valitseNaytettavaLauta() {
@@ -202,11 +182,6 @@ public class Kayttoliittyma implements Runnable {
         }
     }
 
-    /**
-     * Metodi luo uudet JButtonit kaksiulotteiseen taulukkoon.
-     *
-     * @param painikkeet Kaksiulotteinen taulukko, johon uudet napit lisätään
-     */
     public void alustaPainikkeet(JButton[][] painikkeet) {
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
@@ -216,12 +191,6 @@ public class Kayttoliittyma implements Runnable {
         }
     }
 
-    /**
-     * Metodi lisää kuuntelijan jokaiselle JButtonille.
-     *
-     * @param kuuntelija Klikkauksia kuunteleva ja niihin reagoiva kuuntelija
-     * @param painikkeet Kaksiulotteinen JButtonit sisältävä taulukko
-     */
     public void lisaaPainikkeilleKuuntelija(ActionListener kuuntelija,
             JButton[][] painikkeet) {
         for (int i = 0; i < painikkeet.length; i++) {

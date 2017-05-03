@@ -10,7 +10,7 @@ import java.util.List;
  * päivittämiseen.
  */
 public class Lauta {
-    
+
     private int koko;
     private Ruutu[][] ruudut;
     private List<Laiva> laivat;
@@ -26,19 +26,19 @@ public class Lauta {
         alustaLauta();
         this.laivat = new ArrayList<>();
     }
-    
+
     public int getKoko() {
         return koko;
     }
-    
+
     public Ruutu[][] getRuudut() {
         return ruudut;
     }
-    
+
     public List<Laiva> getLaivat() {
         return laivat;
     }
-    
+
     public void setLaivat(List<Laiva> laivat) {
         this.laivat = laivat;
     }
@@ -92,7 +92,7 @@ public class Lauta {
             } else {
                 if (i == 0) {
                     merkitseEstettyRuutu(x, y - 1);
-                }                
+                }
                 if (i == laivanKoko - 1) {
                     merkitseEstettyRuutu(x, y + 1);
                 }
@@ -130,7 +130,14 @@ public class Lauta {
         }
         return true;
     }
-    
+
+    /**
+     * Metodi merkkaa ruudun estetyksi, jolloin siihen ei voi jatkossa asettaa
+     * laivaa.
+     *
+     * @param x Merkattavan ruudun x-koordinaatti
+     * @param y Merkattavan ruudun y-koordinaatti
+     */
     public void merkitseEstettyRuutu(int x, int y) {
         if (x >= 0 && y >= 0 && x < koko && y < koko) {
             ruudut[x][y].setEstetty(true);
@@ -172,7 +179,7 @@ public class Lauta {
             }
         }
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (o == null) {
@@ -181,15 +188,12 @@ public class Lauta {
         if (this.getClass() != o.getClass()) {
             return false;
         }
-        
         Lauta verrattava = (Lauta) o;
-        
         for (int i = 0; i < laivat.size(); i++) {
             if (this.laivat.get(i) != verrattava.laivat.get(i)) {
                 return false;
             }
         }
-        
         return this.koko == verrattava.koko;
     }
 }

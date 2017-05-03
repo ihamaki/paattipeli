@@ -7,10 +7,6 @@ import javax.swing.JLabel;
 import paatti.logiikka.Lauta;
 import paatti.logiikka.Peli;
 
-/**
- * Luokka reagoi pelilaudan graafisen käyttöliittymän painikkeiden klikkauksiin,
- * ja päivittää pelitilanteen niiden perusteella.
- */
 public class KlikkaustenKuuntelija implements ActionListener {
 
     private Kayttoliittyma kayttoliittyma;
@@ -49,15 +45,6 @@ public class KlikkaustenKuuntelija implements ActionListener {
         }
     }
 
-    /**
-     * Metodi hakee klikatun ruudun koordinaatit.
-     *
-     * @param lauta Lauta, johon tällä metodilla haettujen koordinaattien
-     * perusteella ammutaan
-     * @param painikkeet Taulukko JButtoneista, jotka metodi käy läpi
-     * @param pelaaja Pelikenttä, joka päivitetään
-     * @param e Klikkaustapahtuma
-     */
     public void haePelatunRuudunKoordinaatit(Lauta lauta, JButton[][] painikkeet,
             Pelikentta pelaaja, ActionEvent e) {
         for (int i = 0; i < painikkeet.length; i++) {
@@ -69,27 +56,12 @@ public class KlikkaustenKuuntelija implements ActionListener {
         }
     }
 
-    /**
-     * Metodi päivittää ammutun ruudun tietoja logiikan Peli-luokkaa kutsumalla.
-     * Samalla metodi päivittää myös pelilaudan graafisen esityksen kutsumalla
-     * Pelikenttä-luokan päivitysmetodia.
-     *
-     * @param x Ammuttavan ruudun x-koordinaatti
-     * @param y Ammuttavan ruudun y-koordinaatti
-     * @param lauta Pelattavana oleva lauta
-     * @param pelaaja Pelikenttä, joka päivitetään
-     */
     public void ammu(int x, int y, Lauta lauta, Pelikentta pelaaja) {
         lauta.ammu(x, y);
         paivitaPelinTila();
         pelaaja.paivita(lauta);
     }
 
-    /**
-     * Päivittää pelivuorossa olevan pelaajan pelitilannetta kuvaavaan
-     * tekstikenttään ja vaihtaa pelattavana olevan laudan. Jos peli on
-     * päättynyt, ilmoittaa voittajan.
-     */
     public void paivitaPelinTila() {
         if (peli.onkoPeliPaattynyt()) {
             peli.vaihdaPelattava();

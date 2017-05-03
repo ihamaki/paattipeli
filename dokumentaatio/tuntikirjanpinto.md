@@ -19,3 +19,5 @@ Päivä | Tunnit | Kuvaus | Muita huomioita
 25.4.2017 | 4h | Lisätty JavaDoc checkstyleen, jätetty käyttöliittymä pit-raportoinnin ulkopuolelle, lisätty ja korjattu testejä
 26.4.2017 | 6h | Käyttöliittymään lisätty laivojen asettaminen pelilaudalle - peliä voi nyt periaatteessa pelata käyttöliittymän kautta | Peli ei vielä noudattele laivanupotuksen kaikkia sääntöjä, sillä laivan voi lisätä toisen laivan viereen, vaikka toisen laivan päälle lisääminen onkin estetty.
 27.4.2017 | 2h | Päivitetty ja paranneltu testejä, täydennetty JavaDocia, kirjoitettu rakennekuvaus ja käyttöohje
+2.5.2017 | 3h | Poistettu mahdollisuus lisätä laivoja toistensa viereen, päivitetty testit
+3.5.2017 | 1.5h | Paranneltu käyttöliittymää, generoitu html javadoc, lisätty uusimmat pit ja checkstyle | Luokkakaavio pitää muistaa päivittää ajan tasalle ennen loppupalautusta. 

@@ -8,11 +8,6 @@ import paatti.logiikka.Lauta;
 import paatti.logiikka.Peli;
 import paatti.logiikka.Ruutu;
 
-/**
- * Pelikenttä on graafinen esitys yhden pelaajan pelilaudalle, ja on siis osa
- * graafista käyttöliittymää. Pelikenttä tarjoaa metodin pelin graafisen näkymän
- * päivittämiseen.
- */
 public class Pelikentta extends JPanel {
 
     private Peli peli;
@@ -33,12 +28,6 @@ public class Pelikentta extends JPanel {
         }
     }
 
-    /**
-     * Metodi päivittää pelilaudan tilanteen.
-     *
-     * @param lauta Päivitetty lauta, jonka perusteella graafinen lautanäkymä
-     * luodaan
-     */
     public void paivita(Lauta lauta) {
         for (int i = 0; i < lauta.getKoko(); i++) {
             for (int j = 0; j < lauta.getKoko(); j++) {
@@ -46,8 +35,12 @@ public class Pelikentta extends JPanel {
                 JButton painike = painikkeet[i][j];
                 if (ruutu.getAmmuttu()) {
                     if (ruutu.getLaiva() != null) {
+                        if (ruutu.getLaiva().getTuhoutunut()) {
+                            painike.setBackground(Color.ORANGE);
+                        } else {
+                            painike.setBackground(Color.DARK_GRAY);
+                        }
                         painike.setEnabled(false);
-                        painike.setBackground(Color.DARK_GRAY);
                     } else {
                         painike.setEnabled(false);
                         painike.setBackground(null);
