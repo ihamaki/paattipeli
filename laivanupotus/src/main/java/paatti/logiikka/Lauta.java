@@ -179,21 +179,4 @@ public class Lauta {
             }
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        }
-        if (this.getClass() != o.getClass()) {
-            return false;
-        }
-        Lauta verrattava = (Lauta) o;
-        for (int i = 0; i < laivat.size(); i++) {
-            if (this.laivat.get(i) != verrattava.laivat.get(i)) {
-                return false;
-            }
-        }
-        return this.koko == verrattava.koko;
-    }
 }

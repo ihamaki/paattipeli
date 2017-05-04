@@ -1,5 +1,6 @@
 package paatti.kayttoliittyma;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -7,10 +8,9 @@ import javax.swing.JLabel;
 import paatti.logiikka.Lauta;
 import paatti.logiikka.Peli;
 
-public class KlikkaustenKuuntelija implements ActionListener {
+public class PelinKuuntelija implements ActionListener {
 
     private Kayttoliittyma kayttoliittyma;
-    private Peli peli;
     private Lauta lauta1;
     private Lauta lauta2;
     private JButton[][] painikkeet1;
@@ -19,12 +19,11 @@ public class KlikkaustenKuuntelija implements ActionListener {
     private Pelikentta pelaaja2;
     private JLabel pelinTila;
 
-    public KlikkaustenKuuntelija(Kayttoliittyma kayttoliittyma, Peli peli, JButton[][] painikkeet1,
+    public PelinKuuntelija(Kayttoliittyma kayttoliittyma, JButton[][] painikkeet1,
             JButton[][] painikkeet2, Pelikentta pelaaja1, Pelikentta pelaaja2, JLabel pelinTila) {
         this.kayttoliittyma = kayttoliittyma;
-        this.peli = peli;
-        this.lauta1 = peli.getLauta1();
-        this.lauta2 = peli.getLauta2();
+        this.lauta1 = kayttoliittyma.getPeli().getLauta1();
+        this.lauta2 = kayttoliittyma.getPeli().getLauta2();
         this.painikkeet1 = painikkeet1;
         this.painikkeet2 = painikkeet2;
         this.pelaaja1 = pelaaja1;
@@ -34,14 +33,15 @@ public class KlikkaustenKuuntelija implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Peli peli = kayttoliittyma.getPeli();
         if (peli.onkoPeliPaattynyt()) {
             return;
         }
         int pelattava = peli.getPelattava();
         if (pelattava == 1) {
-            haePelatunRuudunKoordinaatit(lauta1, painikkeet1, pelaaja1, e);
+            haePelatunRuudunKoordinaatit(peli.getLauta1(), painikkeet1, pelaaja1, e);
         } else if (pelattava == 2) {
-            haePelatunRuudunKoordinaatit(lauta2, painikkeet2, pelaaja2, e);
+            haePelatunRuudunKoordinaatit(peli.getLauta2(), painikkeet2, pelaaja2, e);
         }
     }
 
@@ -63,9 +63,11 @@ public class KlikkaustenKuuntelija implements ActionListener {
     }
 
     public void paivitaPelinTila() {
+        Peli peli = kayttoliittyma.getPeli();
         if (peli.onkoPeliPaattynyt()) {
             peli.vaihdaPelattava();
             pelinTila.setText("Pelaaja " + peli.getPelattava() + " voitti!");
+            pelinTila.setForeground(Color.MAGENTA);
         } else {
             pelinTila.setText("Pelaajan " + peli.getPelattava() + " vuoro");
             peli.vaihdaPelattava();

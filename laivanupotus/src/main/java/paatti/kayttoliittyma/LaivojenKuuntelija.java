@@ -54,10 +54,17 @@ public class LaivojenKuuntelija implements ActionListener {
 
     public void haeValittuNappi(ActionEvent e, ArrayList<JButton> napit) {
         for (int i = 0; i < napit.size() - 3; i++) {
+            napit.get(i).setBackground(null);
+            napit.get(i).setForeground(Color.BLACK);
             if (napit.get(i) == e.getSource()) {
                 valittuLaiva = napit.get(i);
                 koko = i + 1;
             }
+        }
+
+        if (valittuLaiva != null) {
+            valittuLaiva.setBackground(Color.BLACK);
+            valittuLaiva.setForeground(Color.WHITE);
         }
 
         if (napit.get(napit.size() - 3) == e.getSource()) {
@@ -79,14 +86,17 @@ public class LaivojenKuuntelija implements ActionListener {
                     kayttoliittyma.valitseNaytettavaLauta();
                     suunta = 1;
                     ohje.setText("Pelaaja " + peli.getPelattava() + ": Aseta laivat laudalle");
+                    ohje.setForeground(Color.BLACK);
                 } else {
                     ohje.setText("Kaikki laivat tulee sijoittaa pelilaudalle");
+                    ohje.setForeground(Color.RED);
                 }
             } else if (peli.getPelattava() == 2) {
                 if (kayttoliittyma.getPeli().getLauta2().onkoKaikkiLaivatLisatty()) {
                     kayttoliittyma.vaihdaNakyma();
                 } else {
                     ohje.setText("Kaikki laivat tulee sijoittaa pelilaudalle");
+                    ohje.setForeground(Color.RED);
                 }
             }
         }
@@ -100,6 +110,8 @@ public class LaivojenKuuntelija implements ActionListener {
                     if (valittuLaiva != null) {
                         if (kayttoliittyma.getPeli().lisaaLaiva(lauta, koko, suunta, i, j)) {
                             valittuLaiva.setEnabled(false);
+                            valittuLaiva.setBackground(null);
+                            valittuLaiva.setForeground(Color.BLACK);
                             valittuLaiva = null;
                             koko = 0;
                             pelaaja.naytaLaivat(lauta);

@@ -7,7 +7,7 @@
 <suppressions>
     <suppress files="Main.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="Kayttoliittyma.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="KlikkaustenKuuntelija.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="PelinKuuntelija.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="LaivojenKuuntelija.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="Pelikentta.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

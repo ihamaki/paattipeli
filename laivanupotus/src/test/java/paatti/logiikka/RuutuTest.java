@@ -28,16 +28,11 @@ public class RuutuTest {
     }
 
     @Test
-    public void toStringToimii() {
-        assertEquals("[1, 2]", ruutu.toString());
-    }
-
-    @Test
     public void equalsToimiiKunSamaRuutu() {
         Ruutu toinen = new Ruutu(1, 2);
         Laiva laiva = new Laiva(2);
-        toinen.setAmmuttu(true);
         toinen.setLaiva(laiva);
+        toinen.setAmmuttu(true);
         ruutu.setAmmuttu(true);
         ruutu.setLaiva(laiva);
         assertEquals(toinen, ruutu);

@@ -1,6 +1,7 @@
 package paatti.kayttoliittyma;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -53,7 +54,7 @@ public class Kayttoliittyma implements Runnable {
         lisaaPainikkeilleKuuntelija(l, painikkeet2);
         lisaaNapeilleKuuntelija(l, napit1);
         lisaaNapeilleKuuntelija(l, napit2);
-        
+
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
@@ -132,6 +133,7 @@ public class Kayttoliittyma implements Runnable {
 
         JButton valmis = new JButton("valmis");
         valmis.setEnabled(kaytossa);
+        valmis.setForeground(Color.MAGENTA);
         napit.add(valmis);
         container.add(valmis);
 
@@ -149,7 +151,7 @@ public class Kayttoliittyma implements Runnable {
     public void vaihdaNakyma() {
         frame.getContentPane().removeAll();
         luoPelinKomponentit(frame.getContentPane());
-        KlikkaustenKuuntelija k = new KlikkaustenKuuntelija(this, peli, painikkeet1,
+        PelinKuuntelija k = new PelinKuuntelija(this, painikkeet1,
                 painikkeet2, pelaaja1, pelaaja2, ohje);
         lisaaPainikkeilleKuuntelija(k, painikkeet1);
         lisaaPainikkeilleKuuntelija(k, painikkeet2);

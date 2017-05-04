@@ -38,6 +38,10 @@ public class Peli {
         return pelattava;
     }
 
+    public boolean getPeliPaattynyt() {
+        return peliPaattynyt;
+    }
+
     /**
      * Metodi lisää parametrina annetulle laudalle parametrien mukaisen laivan.
      *
@@ -53,18 +57,6 @@ public class Peli {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Metodi ampuu koordinaattien osoittamaa ruutua sille parametrina annetulta
-     * laudalta.
-     *
-     * @param lauta Lauta, jonka ruutuihin metodi kohdistuu
-     * @param x Ammuttavan ruudun x-koordinaatti
-     * @param y Ammuttavan ruudun y-koordinaatti
-     */
-    public void ammu(Lauta lauta, int x, int y) {
-        lauta.ammu(x, y);
     }
 
     /**

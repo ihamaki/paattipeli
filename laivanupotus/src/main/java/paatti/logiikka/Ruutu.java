@@ -62,11 +62,6 @@ public class Ruutu {
     }
 
     @Override
-    public String toString() {
-        return "[" + this.x + ", " + this.y + "]";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null) {
             return false;

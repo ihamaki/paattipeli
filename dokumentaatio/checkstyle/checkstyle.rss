@@ -60,20 +60,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#paatti.kayttoliittyma.KlikkaustenKuuntelija.java">paatti/kayttoliittyma/KlikkaustenKuuntelija.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#paatti.logiikka.Peli.java">paatti/logiikka/Peli.java</a>
                 </td>
                 <td>
@@ -89,6 +75,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#paatti.main.Main.java">paatti/main/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#paatti.kayttoliittyma.PelinKuuntelija.java">paatti/kayttoliittyma/PelinKuuntelija.java</a>
                 </td>
                 <td>
                   0

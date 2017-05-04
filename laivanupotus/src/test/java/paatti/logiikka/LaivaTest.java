@@ -22,14 +22,14 @@ public class LaivaTest {
     @Test
     public void konstruktoriToimii() {
         assertEquals(3, laiva.getEhjatOsat());
-        assertFalse(laiva.getTuhoutunut());
+        assertEquals(false, laiva.getTuhoutunut());
     }
 
     @Test
     public void ammuVahentaaEhjienOsienMaaraa() {
         laiva.ammu();
         assertEquals(2, laiva.getEhjatOsat());
-        assertFalse(laiva.getTuhoutunut());
+        assertEquals(false, laiva.getTuhoutunut());
     }
 
     @Test
@@ -38,12 +38,27 @@ public class LaivaTest {
         laiva.ammu();
         laiva.ammu();
         assertEquals(0, laiva.getEhjatOsat());
-        assertTrue(laiva.getTuhoutunut());
+        assertEquals(true, laiva.getTuhoutunut());
     }
-    
+
     @Test
-    public void equalsToimii() {
+    public void equalsToimiiKunSamaLaiva() {
         Laiva toinen = new Laiva(3);
         assertEquals(toinen, laiva);
+        laiva.ammu();
+        laiva.ammu();
+        laiva.ammu();
+        toinen.ammu();
+        toinen.ammu();
+        toinen.ammu();
+        assertEquals(toinen, laiva);
+    }
+
+    @Test
+    public void equalsToimiiKunEriLaiva() {
+        Laiva toinen = new Laiva(2);
+        assertEquals(false, laiva == toinen);
+        laiva.ammu();
+        assertEquals(false, laiva == toinen);
     }
 }
