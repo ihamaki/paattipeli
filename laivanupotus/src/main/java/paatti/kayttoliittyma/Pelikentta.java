@@ -60,7 +60,7 @@ public class Pelikentta extends JPanel {
                 JButton painike = painikkeet[i][j];
                 if (ruutu.getLaiva() != null) {
                     if (ruutu.getLaiva().getTuhoutunut()) {
-                        painike.setBackground(Color.ORANGE);
+                        painike.setBackground(Color.RED);
                     } else {
                         painike.setBackground(Color.DARK_GRAY);
                     }

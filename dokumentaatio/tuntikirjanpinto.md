@@ -21,4 +21,4 @@ Päivä | Tunnit | Kuvaus | Muita huomioita
 27.4.2017 | 2h | Päivitetty ja paranneltu testejä, täydennetty JavaDocia, kirjoitettu rakennekuvaus ja käyttöohje
 2.5.2017 | 3h | Poistettu mahdollisuus lisätä laivoja toistensa viereen, päivitetty testit
 3.5.2017 | 2.5h | Paranneltu käyttöliittymää, generoitu html javadoc, lisätty uusimmat pit ja checkstyle | Luokkakaavio pitää muistaa päivittää ajan tasalle ennen loppupalautusta. 
-4.5.2017 | 2h |Poistettu turhia metodeja, päivitetty testejä, piirretty uudet luokka- ja sekvenssikaaviot, testidokumentaatio tehty
+4.5.2017 | 3h | Poistettu turhia metodeja, päivitetty testejä, piirretty uudet luokka- ja sekvenssikaaviot, testidokumentaatio tehty
